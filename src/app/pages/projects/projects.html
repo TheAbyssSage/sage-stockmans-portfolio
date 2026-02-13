@@ -1,1 +1,135 @@
-<p>projects works!</p>
+<!-- src/app/pages/projects/projects.component.html -->
+
+<section class="projects-page">
+
+    <!-- HEADER -->
+    <section class="projects-header fade-up">
+        <p class="section-label">Projects</p>
+        <h1 class="projects-title">
+            A log of the things I&apos;m building as I learn.
+        </h1>
+        <p class="projects-subtitle">
+            From small JavaScript experiments to full stack web apps.
+        </p>
+    </section>
+
+    <!-- INTRO / EXPLANATION CARD -->
+    <section class="projects-intro-card fade-up">
+        <div>
+            <h2>How this page works</h2>
+            <p>
+                This is my running log of projects and experiments. Each entry has a
+                short story: what I built, what problem it solves, and what I learned.
+                Newer work appears at the top.
+            </p>
+            <p>
+                Some are small focused exercises, others are full stack apps with a PHP /
+                Laravel backend and an Angular or JavaScript frontend.
+            </p>
+        </div>
+        <div class="projects-intro-tags demo-tags">
+            <span class="demo-tag">Full stack</span>
+            <span class="demo-tag">APIs</span>
+            <span class="demo-tag">Experiments</span>
+            <span class="demo-tag">Learning log</span>
+        </div>
+    </section>
+
+    <!-- LABEL ABOVE LIST -->
+    <p class="projects-list-label fade-up">
+        Newest first
+    </p>
+
+    <!-- PROJECT LIST (newest on top) -->
+    <section class="projects-list fade-up">
+
+        <!-- EXAMPLE ENTRY: PORTFOLIO V2 -->
+        <article class="project-entry">
+            <header class="project-entry-header">
+                <h2 class="project-entry-title">Portfolio site v2 (this one)</h2>
+                <time class="project-entry-date" datetime="2025-11-04">
+                    November 4, 2025
+                </time>
+            </header>
+
+            <p class="project-entry-text">
+                Redesigned my portfolio with a new Petrichor-inspired theme, using Angular
+                on the frontend. Focused on clear structure, readable content, and a
+                layout that feels more like an editorial piece than a basic template.
+            </p>
+
+            <div class="project-entry-meta">
+                <div class="project-entry-tags demo-tags">
+                    <span class="demo-tag">Angular</span>
+                    <span class="demo-tag">Design system</span>
+                    <span class="demo-tag">Portfolio</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- EXAMPLE ENTRY: API PROJECT -->
+        <article class="project-entry">
+            <header class="project-entry-header">
+                <h2 class="project-entry-title">Group API project</h2>
+                <time class="project-entry-date" datetime="2025-11-21">
+                    November 21, 2025
+                </time>
+            </header>
+
+            <p class="project-entry-text">
+                Built a group project that fetches data from a public API and presents it
+                in a clear, filterable interface. I worked on integrating the API,
+                structuring the data, and adding quality-of-life features like search and
+                filters.
+            </p>
+
+            <div class="project-entry-meta">
+                <div class="project-entry-tags demo-tags">
+                    <span class="demo-tag">APIs</span>
+                    <span class="demo-tag">Team project</span>
+                    <span class="demo-tag">JavaScript</span>
+                </div>
+                <div class="project-entry-links">
+                    <a class="link-cta" href="https://the-illuminates-weather-app.netlify.app/" target="_blank"
+                        rel="noopener noreferrer">
+                        <span>View live</span><i>↗</i>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- EXAMPLE ENTRY: JS EXPERIMENT -->
+        <article class="project-entry">
+            <header class="project-entry-header">
+                <h2 class="project-entry-title">Memory game</h2>
+                <time class="project-entry-date" datetime="2025-11-10">
+                    November 10, 2025
+                </time>
+            </header>
+
+            <p class="project-entry-text">
+                Created a small browser-based memory game using HTML, CSS, and JavaScript.
+                The goal was to practice DOM manipulation, state handling, and basic game
+                logic in a tight scope.
+            </p>
+
+            <div class="project-entry-meta">
+                <div class="project-entry-tags demo-tags">
+                    <span class="demo-tag">JavaScript</span>
+                    <span class="demo-tag">Game</span>
+                    <span class="demo-tag">Experiment</span>
+                </div>
+                <div class="project-entry-links">
+                    <a class="link-cta" href="https://memory-game-simple.netlify.app/" target="_blank"
+                        rel="noopener noreferrer">
+                        <span>Play online</span><i>↗</i>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Add more entries here by copying the <article> block -->
+
+    </section>
+
+</section>

@@ -1,0 +1,149 @@
+/* src/app/pages/projects/projects.component.css */
+
+.projects-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+}
+
+/* Header */
+.projects-header {
+    margin-bottom: 2.5rem;
+}
+
+.projects-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+.projects-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+/* Intro card */
+.projects-intro-card {
+    margin-bottom: 2.2rem;
+    padding: 1.4rem 1.3rem 1.5rem;
+    border-radius: 18px;
+    border: 1px solid rgba(200, 191, 173, 1);
+    background: rgba(232, 226, 217, 0.98);
+    box-shadow: 0 18px 40px rgba(26, 24, 20, 0.08);
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+    gap: 1.3rem;
+    align-items: center;
+}
+
+.projects-intro-card h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+    color: var(--storm);
+}
+
+.projects-intro-card p {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--storm);
+    margin-bottom: 0.8rem;
+}
+
+.projects-intro-tags {
+    justify-content: flex-start;
+}
+
+/* Label above list */
+.projects-list-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.9rem;
+}
+
+/* List */
+.projects-list {
+    display: flex;
+    flex-direction: column; 
+    /* column-reverse */
+    /* newest at top while you append at bottom, or keep normal and manually order */
+    gap: 1.4rem;
+}
+
+/* Individual project entry card */
+.project-entry {
+    padding: 1.3rem 1.2rem 1.4rem;
+    border-radius: 18px;
+    border: 1px solid rgba(200, 191, 173, 0.95);
+    background: rgba(232, 226, 217, 0.96);
+    box-shadow: 0 14px 32px rgba(26, 24, 20, 0.06);
+}
+
+.project-entry-header {
+    margin-bottom: 0.5rem;
+}
+
+.project-entry-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    margin: 0 0 0.2rem;
+    color: var(--storm);
+}
+
+.project-entry-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+.project-entry-text {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--storm);
+    margin: 0.4rem 0 0.9rem;
+}
+
+/* Meta: tags + links row */
+.project-entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.8rem;
+}
+
+.project-entry-tags {
+    flex-wrap: wrap;
+}
+
+.project-entry-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .projects-intro-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .projects-page {
+        padding: 2rem 1.4rem 3.5rem;
+    }
+
+    .projects-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+    }
+}
