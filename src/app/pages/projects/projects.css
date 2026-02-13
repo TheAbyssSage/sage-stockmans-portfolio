@@ -1,7 +1,7 @@
 /* src/app/pages/projects/projects.component.css */
 
 .projects-page {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 2.5rem 2rem 4rem;
 }
@@ -30,14 +30,14 @@
 
 /* Intro card */
 .projects-intro-card {
-    margin-bottom: 2.2rem;
+    margin-bottom: 2.4rem;
     padding: 1.4rem 1.3rem 1.5rem;
     border-radius: 18px;
     border: 1px solid rgba(200, 191, 173, 1);
     background: rgba(232, 226, 217, 0.98);
     box-shadow: 0 18px 40px rgba(26, 24, 20, 0.08);
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
     gap: 1.3rem;
     align-items: center;
 }
@@ -56,30 +56,50 @@
     margin-bottom: 0.8rem;
 }
 
-.projects-intro-tags {
-    justify-content: flex-start;
-}
-
-/* Label above list */
-.projects-list-label {
+/* Timeline label */
+.projects-timeline-label {
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--clay);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.7rem;
 }
 
-/* List */
-.projects-list {
+/* Timeline layout */
+.projects-timeline {
+    position: relative;
+    padding-left: 1.3rem;
+    border-left: 1px solid rgba(200, 191, 173, 0.8);
     display: flex;
-    flex-direction: column; 
-    /* column-reverse */
-    /* newest at top while you append at bottom, or keep normal and manually order */
+    flex-direction: column;
     gap: 1.4rem;
 }
 
-/* Individual project entry card */
-.project-entry {
+/* Single project node */
+.project-node {
+    position: relative;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.project-node-dot {
+    position: absolute;
+    left: -1.1rem;
+    top: 0.9rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ochre);
+    box-shadow: 0 0 0 3px rgba(196, 137, 58, 0.25);
+}
+
+.project-node--highlight .project-node-dot {
+    background: var(--storm);
+    box-shadow: 0 0 0 4px rgba(143, 175, 194, 0.6);
+}
+
+.project-node-content {
+    flex: 1;
     padding: 1.3rem 1.2rem 1.4rem;
     border-radius: 18px;
     border: 1px solid rgba(200, 191, 173, 0.95);
@@ -87,33 +107,84 @@
     box-shadow: 0 14px 32px rgba(26, 24, 20, 0.06);
 }
 
-.project-entry-header {
-    margin-bottom: 0.5rem;
+/* Header inside node */
+.project-node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
 }
 
-.project-entry-title {
+.project-node-title-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.project-node-title {
     font-family: "Playfair Display", serif;
-    font-size: 1.3rem;
-    margin: 0 0 0.2rem;
+    font-size: 1.25rem;
+    margin: 0;
     color: var(--storm);
 }
 
-.project-entry-date {
+.project-node-chip {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(196, 137, 58, 0.9);
+    color: var(--ochre);
+    background: rgba(196, 137, 58, 0.08);
+}
+
+.project-node-date {
     font-size: 0.7rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--clay);
 }
 
-.project-entry-text {
+/* Body text */
+.project-node-text {
     font-size: 0.85rem;
     line-height: 1.9;
     color: var(--storm);
-    margin: 0.4rem 0 0.9rem;
+    margin: 0.4rem 0 0.8rem;
 }
 
-/* Meta: tags + links row */
-.project-entry-meta {
+/* Meta info */
+.project-node-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.6rem 1.2rem;
+    margin: 0 0 0.9rem;
+}
+
+.project-node-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.project-node-meta dt {
+    font-size: 0.63rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+.project-node-meta dd {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--storm);
+}
+
+/* Footer inside node */
+.project-node-footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -121,11 +192,11 @@
     gap: 0.8rem;
 }
 
-.project-entry-tags {
+.project-node-tags {
     flex-wrap: wrap;
 }
 
-.project-entry-links {
+.project-node-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
@@ -145,5 +216,18 @@
 
     .projects-title {
         font-size: clamp(1.8rem, 7vw, 2.2rem);
+    }
+
+    .projects-timeline {
+        padding-left: 1rem;
+    }
+
+    .project-node-dot {
+        left: -0.95rem;
+    }
+
+    .project-node-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
