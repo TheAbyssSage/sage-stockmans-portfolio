@@ -1,0 +1,96 @@
+/* src/app/pages/contact/contact.component.css */
+
+.contact-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+}
+
+/* Header */
+.contact-header {
+    margin-bottom: 2.5rem;
+}
+
+.contact-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+/* Main intro text */
+.contact-main {
+    margin-bottom: 2rem;
+}
+
+.contact-main p {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--storm);
+    margin-bottom: 0.9rem;
+}
+
+/* Cards with contact methods */
+.contact-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.contact-card {
+    background: rgba(232, 226, 217, 0.9);
+    /* stone */
+    border: 1px solid rgba(200, 191, 173, 0.9);
+    /* dust */
+    border-radius: 16px;
+    padding: 1.2rem 1.1rem 1.4rem;
+    box-shadow: 0 14px 30px rgba(26, 24, 20, 0.06);
+}
+
+.contact-card h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: var(--storm);
+}
+
+.contact-card p {
+    font-size: 0.8rem;
+    color: var(--storm);
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+}
+
+/* Small note at bottom */
+.contact-note p {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--storm);
+}
+
+/* Reuse CTA spacing */
+.contact-card .link-cta {
+    margin-top: 0.2rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .contact-page {
+        padding: 2rem 1.4rem 3.5rem;
+    }
+
+    .contact-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+    }
+}
