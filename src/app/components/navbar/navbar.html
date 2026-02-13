@@ -1,43 +1,31 @@
-<!-- navbar.component.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
-    <div class="container">
-        <!-- Brand -->
-        <a class="navbar-brand fw-semibold" routerLink="/">
-            Sage Stockmans
+<!-- src/app/components/navbar/navbar.component.html -->
+<nav class="app-nav">
+    <div class="app-nav-inner">
+
+        <a class="app-nav-brand" routerLink="/">
+            Sage<span>.</span>
         </a>
 
-        <!-- Toggler -->
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="app-nav-toggle" type="button" (click)="isOpen = !isOpen" aria-label="Toggle navigation"
+            [attr.aria-expanded]="isOpen">
+            <span></span>
+            <span></span>
         </button>
 
-        <!-- Links -->
-        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-            <ul class="navbar-nav align-items-lg-center gap-lg-3">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{ exact: true }">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/about" routerLinkActive="active">
-                        About
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/projects" routerLinkActive="active">
-                        Projects
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/contact" routerLinkActive="active">
-                        Contact
-                    </a>
-                </li>
-            </ul>
+        <div class="app-nav-links" [class.app-nav-links--open]="isOpen">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                Home
+            </a>
+            <a routerLink="/projects" routerLinkActive="active">
+                Projects
+            </a>
+            <a routerLink="/about" routerLinkActive="active">
+                About
+            </a>
+            <a routerLink="/contact" routerLinkActive="active">
+                Contact
+            </a>
         </div>
+
     </div>
 </nav>
