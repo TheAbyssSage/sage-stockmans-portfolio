@@ -1,9 +1,185 @@
 /* You can add global styles to this file, and also import other style files */
 
-
-
 .bbh-sans-bartle-regular {
     font-family: "BBH Sans Bartle", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+/* =============================================
+   PETRICHOR — GLOBAL THEME
+============================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&display=swap");
+
+:root {
+    --ink: #1a1814;
+    --dust: #c8bfad;
+    --clay: #9c7c5e;
+    --moss: #4a5e45;
+    --slate: #6b7f8e;
+    --storm: #2e3d4f;
+    --ochre: #c4893a;
+    --petal: #d4a5a0;
+    --stone: #e8e2d9;
+    --rain: #8fafc2;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--stone);
+    color: var(--ink);
+    font-family: "DM Mono", monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Gradient bar at very top of site */
+.gradient-bar {
+    height: 6px;
+    background: linear-gradient(to right,
+            var(--ink),
+            var(--storm),
+            var(--slate),
+            var(--rain),
+            var(--moss),
+            var(--clay),
+            var(--ochre),
+            var(--petal),
+            var(--dust),
+            var(--stone));
+}
+
+/* Generic section label */
+.section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--dust);
+}
+
+/* Reusable tags (chips) */
+.demo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.demo-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid;
+    cursor: default;
+    transition: all 0.2s;
+}
+
+.demo-tag:hover {
+    background: currentColor;
+    color: var(--storm);
+}
+
+/* Generic stats row */
+.demo-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(200, 191, 173, 0.15);
+}
+
+.demo-stat:last-child {
+    border-bottom: none;
+}
+
+.demo-stat-num {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--ochre);
+    line-height: 1;
+}
+
+.demo-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--dust);
+    text-transform: uppercase;
+}
+
+/* Simple CTA link */
+.link-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--storm);
+    text-decoration: none;
+}
+
+.link-cta span {
+    border-bottom: 1px solid var(--ochre);
+}
+
+.link-cta:hover span {
+    border-color: var(--storm);
+}
+
+.link-cta i {
+    font-style: normal;
+}
+
+/* Simple fade-up anim utility */
+.fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
