@@ -231,3 +231,33 @@
         align-items: flex-start;
     }
 }
+
+
+/* Add subtle divider lines between parts of a project entry */
+.project-node-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* .project-node-header {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(200, 191, 173, 0.6);
+    margin-bottom: 0.2rem;
+} */
+
+.project-node-text {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(200, 191, 173, 0.4);
+    margin-bottom: 0.2rem;
+}
+
+.project-node-meta {
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(200, 191, 173, 0.3);
+    margin-bottom: 0.1rem;
+}
+
+.project-node-footer {
+    padding-top: 0.2rem;
+}

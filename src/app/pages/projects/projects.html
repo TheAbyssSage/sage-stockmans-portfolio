@@ -43,99 +43,58 @@
     <!-- TIMELINE -->
     <section class="projects-timeline fade-up">
 
-        <!-- PROJECT ENTRY – PORTFOLIO V2 -->
-        <article class="project-node project-node--highlight">
+        <div *ngIf="loading" class="projects-loading">
+            Loading projects from GitHub…
+        </div>
+
+        <div *ngIf="!loading && error" class="projects-error">
+            {{ error }}
+        </div>
+
+        <article *ngFor="let project of projects; let i = index" class="project-node"
+            [class.project-node--highlight]="i === 0">
             <div class="project-node-dot"></div>
             <div class="project-node-content">
                 <header class="project-node-header">
                     <div class="project-node-title-block">
-                        <h2 class="project-node-title">Portfolio site v2 (this one)</h2>
-                        <span class="project-node-chip">Featured</span>
+                        <h2 class="project-node-title">{{ project.title }}</h2>
+                        <span *ngIf="i === 0" class="project-node-chip">Newest</span>
                     </div>
-                    <time class="project-node-date" datetime="2025-11-04">
-                        November 4, 2025
+                    <time class="project-node-date">
+                        {{ project.date | date: 'MMMM d, y' }}
                     </time>
                 </header>
 
                 <p class="project-node-text">
-                    A full rebuild of my portfolio in Angular with a new Petrichor‑inspired design
-                    system. Focused on content structure, readable typography, and a layout that
-                    feels closer to an editorial than a generic developer template.
+                    {{ project.description }}
                 </p>
 
                 <dl class="project-node-meta">
                     <div>
                         <dt>Type</dt>
-                        <dd>Solo · Portfolio</dd>
+                        <dd>{{ project.type }}</dd>
                     </div>
                     <div>
                         <dt>Stack</dt>
-                        <dd>Angular · TypeScript · Custom design system</dd>
+                        <dd>{{ project.stack }}</dd>
                     </div>
                     <div>
-                        <dt>Status</dt>
-                        <dd>Live · Iterating</dd>
+                        <dt>Focus</dt>
+                        <dd>{{ project.focus }}</dd>
                     </div>
                 </dl>
 
                 <div class="project-node-footer">
                     <div class="project-node-tags demo-tags">
-                        <span class="demo-tag">Angular</span>
-                        <span class="demo-tag">Design system</span>
-                        <span class="demo-tag">UI/UX</span>
+                        <span *ngFor="let tag of project.tags" class="demo-tag">
+                            {{ tag }}
+                        </span>
                     </div>
                     <div class="project-node-links">
-                        <a class="link-cta" routerLink="/about">
-                            <span>See how I present myself</span><i>→</i>
+                        <a class="link-cta" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                            <span>View on GitHub</span><i>↗</i>
                         </a>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT ENTRY – GROUP API PROJECT -->
-        <article class="project-node">
-            <div class="project-node-dot"></div>
-            <div class="project-node-content">
-                <header class="project-node-header">
-                    <div class="project-node-title-block">
-                        <h2 class="project-node-title">Group API project</h2>
-                    </div>
-                    <time class="project-node-date" datetime="2025-11-21">
-                        November 21, 2025
-                    </time>
-                </header>
-
-                <p class="project-node-text">
-                    In a small team, we built a weather app that consumes a public API and
-                    presents the data with search, filters, and clear visual hierarchy.
-                    I focused on integrating the API, structuring the data, and polishing
-                    the UX so it feels usable outside the classroom.
-                </p>
-
-                <dl class="project-node-meta">
-                    <div>
-                        <dt>Type</dt>
-                        <dd>Team project</dd>
-                    </div>
-                    <div>
-                        <dt>Stack</dt>
-                        <dd>JavaScript · REST API</dd>
-                    </div>
-                    <div>
-                        <dt>What I did</dt>
-                        <dd>API integration · filtering · UX tweaks</dd>
-                    </div>
-                </dl>
-
-                <div class="project-node-footer">
-                    <div class="project-node-tags demo-tags">
-                        <span class="demo-tag">APIs</span>
-                        <span class="demo-tag">Team</span>
-                        <span class="demo-tag">Weather app</span>
-                    </div>
-                    <div class="project-node-links">
-                        <a class="link-cta" href="https://the-illuminates-weather-app.netlify.app/" target="_blank"
+                        <a *ngIf="project.liveUrl" class="link-cta" [href]="project.liveUrl" target="_blank"
                             rel="noopener noreferrer">
                             <span>View live</span><i>↗</i>
                         </a>
@@ -143,103 +102,6 @@
                 </div>
             </div>
         </article>
-
-        <!-- PROJECT ENTRY – MEMORY GAME -->
-        <article class="project-node">
-            <div class="project-node-dot"></div>
-            <div class="project-node-content">
-                <header class="project-node-header">
-                    <div class="project-node-title-block">
-                        <h2 class="project-node-title">Simple memory game</h2>
-                    </div>
-                    <time class="project-node-date" datetime="2025-11-10">
-                        November 10, 2025
-                    </time>
-                </header>
-
-                <p class="project-node-text">
-                    A browser-based card flip memory game built with HTML, CSS, and JavaScript.
-                    This project was about game logic, state, and making simple feedback
-                    (matches, mismatches, win state) feel satisfying.
-                </p>
-
-                <dl class="project-node-meta">
-                    <div>
-                        <dt>Type</dt>
-                        <dd>Solo · Experiment</dd>
-                    </div>
-                    <div>
-                        <dt>Stack</dt>
-                        <dd>HTML · CSS · JavaScript</dd>
-                    </div>
-                    <div>
-                        <dt>Focus</dt>
-                        <dd>Game logic · DOM manipulation</dd>
-                    </div>
-                </dl>
-
-                <div class="project-node-footer">
-                    <div class="project-node-tags demo-tags">
-                        <span class="demo-tag">JavaScript</span>
-                        <span class="demo-tag">Game</span>
-                        <span class="demo-tag">Practice</span>
-                    </div>
-                    <div class="project-node-links">
-                        <a class="link-cta" href="https://memory-game-simple.netlify.app/" target="_blank"
-                            rel="noopener noreferrer">
-                            <span>Play online</span><i>↗</i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- PROJECT ENTRY – add more by copying this block -->
-        <!--
-    <article class="project-node">
-      <div class="project-node-dot"></div>
-      <div class="project-node-content">
-        <header class="project-node-header">
-          <div class="project-node-title-block">
-            <h2 class="project-node-title">Project title</h2>
-          </div>
-          <time class="project-node-date" datetime="YYYY-MM-DD">Human date</time>
-        </header>
-
-        <p class="project-node-text">
-          Short description of what you built, what problem it solves,
-          and what you learned from it.
-        </p>
-
-        <dl class="project-node-meta">
-          <div>
-            <dt>Type</dt>
-            <dd>Solo / Team / Exam</dd>
-          </div>
-          <div>
-            <dt>Stack</dt>
-            <dd>Tech used here</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>What you were practicing</dd>
-          </div>
-        </dl>
-
-        <div class="project-node-footer">
-          <div class="project-node-tags demo-tags">
-            <span class="demo-tag">Tag 1</span>
-            <span class="demo-tag">Tag 2</span>
-          </div>
-          <div class="project-node-links">
-            <a class="link-cta" href="..." target="_blank" rel="noopener noreferrer">
-              <span>View</span><i>↗</i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
-    -->
 
     </section>
 
