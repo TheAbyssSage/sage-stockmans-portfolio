@@ -1,16 +1,110 @@
 <!-- src/app/pages/home/home.component.html -->
-<div class="black-bg">
 
-    <section class="home image">
-        <div class="top bbh-sans-bartle-regular">
-            <div>
-                &gt; Sage-Stockmans<span class="cursor"> _</span>
+<section class="home-page">
+
+    <!-- HEADER -->
+    <header class="home-header fade-up">
+        <div>
+            <p class="header-label">Portfolio · Full Stack Development</p>
+            <h1>
+                Sage <em>Stockmans</em>
+            </h1>
+        </div>
+        <div class="header-meta">
+            PHP · Laravel · Angular<br />
+            Arizona &amp; Belgium<br />
+            Full Stack Developer in training
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="home-intro fade-up">
+        <p class="intro-line">
+            &gt; Sage Stockmans<span class="cursor">_</span>
+        </p>
+        <p class="intro-text">
+            I build full stack web applications with PHP, Laravel, Angular, and MySQL —
+            with a focus on clear structure, responsive UI, and reliable APIs. I enjoy
+            taking an idea from scratch to a working product you can click and use.
+        </p>
+
+        <div class="intro-tags demo-tags">
+            <span class="demo-tag intro-tag--backend">Backend · PHP, Laravel</span>
+            <span class="demo-tag intro-tag--frontend">Frontend · Angular, JS</span>
+            <span class="demo-tag intro-tag--data">Data · MySQL, DB design</span>
+            <span class="demo-tag intro-tag--workflow">Workflow · Agile &amp; Scrum</span>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECT / DEMO CARD -->
+    <section class="home-feature fade-up">
+        <p class="section-label">Featured work</p>
+
+        <div class="demo-card">
+            <div class="demo-left">
+                <h2>
+                    Building real projects<br />
+                    while I learn.
+                </h2>
+                <p>
+                    From small JavaScript experiments to full PHP &amp; Angular apps,
+                    I focus on projects that solve real problems, teach me new patterns,
+                    and are solid enough to deploy and maintain.
+                </p>
+                <div class="demo-tags">
+                    <span class="demo-tag">Full stack</span>
+                    <span class="demo-tag">APIs</span>
+                    <span class="demo-tag">Laravel &amp; PHP</span>
+                    <span class="demo-tag">Angular</span>
+                </div>
+                <div class="home-links">
+                    <a class="link-cta" routerLink="/projects">
+                        <span>View projects</span><i>↗</i>
+                    </a>
+                    <a class="link-cta" routerLink="/about">
+                        <span>About me</span><i>→</i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="demo-right">
+                <div class="demo-stat">
+                    <span class="demo-stat-num">8+</span>
+                    <span class="demo-stat-label">Projects &amp; experiments</span>
+                </div>
+                <div class="demo-stat">
+                    <span class="demo-stat-num">3</span>
+                    <span class="demo-stat-label">Stacks in use (PHP, Laravel, Angular)</span>
+                </div>
+                <div class="demo-stat">
+                    <span class="demo-stat-num">∞</span>
+                    <span class="demo-stat-label">Bugs debugged &amp; lessons learned</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT PREVIEW -->
+    <section class="home-contact fade-up">
+        <p class="section-label">Get in touch</p>
+        <p class="home-contact-text">
+            Open to internships, junior roles, and collaborations. If you&apos;re
+            looking for someone who enjoys learning fast and shipping working code,
+            let&apos;s talk.
+        </p>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="home-contact-links">
+            <a class="link-cta" href="mailto:sage.stockmans@pm.me">
+                <span>Email</span><i>✉</i>
+            </a>
+            <a class="link-cta" href="https://github.com/TheAbyssSage" target="_blank" rel="noopener noreferrer">
+                <span>GitHub</span><i>↗</i>
+            </a>
+            <a class="link-cta" href="https://www.linkedin.com/in/sage-stockmans-91090038b" target="_blank"
+                rel="noopener noreferrer">
+                <span>LinkedIn</span><i>↗</i>
+            </a>
+        </div>
+    </section>
 
-</div>
+</section>
