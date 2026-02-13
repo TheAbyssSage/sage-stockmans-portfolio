@@ -1,54 +1,152 @@
-/* navbar.component.css */
+/* src/app/components/navbar/navbar.component.css */
 
-/* Minimalistic look: light text, clear focus states, no heavy backgrounds */
-.navbar {
-    font-size: 0.95rem;
-    letter-spacing: 0.03em;
+.app-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(232, 226, 217, 0.85);
+    /* stone with a bit of transparency */
+    border-bottom: 1px solid rgba(200, 191, 173, 0.6);
+    /* dust */
 }
 
-/* Brand: slightly stronger, but still clean */
-.navbar-brand {
-    font-size: 1.05rem;
+.app-nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.6rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Brand */
+.app-nav-brand {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.app-nav-brand span {
+    color: var(--ochre);
+}
+
+/* Links */
+.app-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 
-/* Links: subtle color and hover underline for a clean portfolio feel */
-.nav-link {
-    color: #444;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+.app-nav-links a {
+    text-decoration: none;
+    color: var(--storm);
     position: relative;
-    transition: color 0.2s ease;
+    padding-bottom: 0.2rem;
 }
 
-.nav-link:hover {
-    color: #000;
-}
-
-/* Active link: underline + darker text, minimal but clear */
-.nav-link.active {
-    color: #000;
-}
-
-.nav-link.active::after,
-.nav-link:hover::after {
-    content: '';
+.app-nav-links a::after {
+    content: "";
     position: absolute;
     left: 0;
-    bottom: -0.2rem;
-    width: 100%;
+    bottom: 0;
     height: 1px;
-    background-color: #000;
+    width: 0;
+    background: var(--ochre);
+    transition: width 0.18s ease;
 }
 
-/* Toggler: keep it as minimal as possible */
-.navbar-toggler {
-    padding: 0.25rem 0.4rem;
+.app-nav-links a:hover::after,
+.app-nav-links a.active::after {
+    width: 100%;
 }
 
-/* On very small screens, reduce gap a little */
-@media (max-width: 576px) {
-    .navbar-nav {
-        gap: 0.25rem;
+.app-nav-links a.active {
+    color: var(--ink);
+}
+
+/* Mobile toggle */
+.app-nav-toggle {
+    display: none;
+    width: 32px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin-left: 1rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.app-nav-toggle span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--storm);
+    border-radius: 999px;
+    transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease,
+        bottom 0.2s ease;
+}
+
+.app-nav-toggle span:first-child {
+    top: 6px;
+}
+
+.app-nav-toggle span:last-child {
+    bottom: 6px;
+}
+
+/* Transform toggle when open */
+.app-nav-links--open~.app-nav-toggle span:first-child,
+.app-nav-toggle[aria-expanded="true"] span:first-child {
+    top: 11px;
+    transform: rotate(45deg);
+}
+
+.app-nav-links--open~.app-nav-toggle span:last-child,
+.app-nav-toggle[aria-expanded="true"] span:last-child {
+    bottom: 11px;
+    transform: rotate(-45deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-nav-inner {
+        padding: 0.6rem 1.25rem;
+    }
+
+    .app-nav-toggle {
+        display: block;
+    }
+
+    .app-nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 1.25rem 1rem;
+        background: rgba(232, 226, 217, 0.98);
+        border-bottom: 1px solid rgba(200, 191, 173, 0.8);
+        gap: 0.6rem;
+        transform-origin: top;
+        transform: scaleY(0.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .app-nav-links--open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scaleY(1);
     }
 }
