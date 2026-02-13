@@ -2,52 +2,70 @@
 
 <section class="about-page">
 
-    <!-- HEADER / TITLE -->
-    <section class="about-header fade-up">
-        <p class="section-label">About</p>
-        <h1 class="about-title">
-            A developer who likes to understand the whole system.
-        </h1>
-        <p class="about-subtitle">
-            Full Stack Developer in training · Arizona &amp; Belgium
-        </p>
+    <!-- HEADER / HERO CARD -->
+    <section class="about-hero fade-up">
+        <div class="about-hero-text">
+            <p class="section-label">About</p>
+            <h1 class="about-title">
+                Full stack developer in training,<br />
+                who likes to understand the whole system.
+            </h1>
+            <p class="about-subtitle">
+                Arizona &amp; Belgium · PHP, Laravel, Angular, MySQL
+            </p>
+        </div>
+
+        <aside class="about-hero-card">
+            <h2>Snapshot</h2>
+            <p class="about-hero-body">
+                I&apos;m Sage Stockmans — a full stack developer in training who enjoys
+                taking an idea from a rough sketch to a working web application,
+                across backend, frontend, and database.
+            </p>
+            <ul class="about-hero-list">
+                <li><span>Current focus</span><strong>Full Stack @ SyntraPXL</strong></li>
+                <li><span>Stacks</span><strong>PHP/Laravel · Angular · MySQL</strong></li>
+                <li><span>Languages</span><strong>Dutch &amp; English</strong></li>
+                <li><span>Working style</span><strong>Calm, curious, team‑oriented</strong></li>
+            </ul>
+        </aside>
     </section>
 
-    <br>
+    <!-- STORY + QUICK FACTS -->
+    <section class="about-grid fade-up">
+        <div class="about-section">
+            <h2 class="about-section-title">Who I am</h2>
+            <p>
+                I&apos;m Sage Stockmans, with roots in both Belgium and the United States.
+                I&apos;m fluent in Dutch and English, and I tend to stay calm and focused
+                when things get complex or time‑sensitive.
+            </p>
+            <p>
+                I&apos;m currently studying Full Stack Development at SyntraPXL. I&apos;m drawn
+                to full stack work because it gives me creative freedom: design the
+                database, build the API, wire up the UI, and finish with something you
+                can actually click and use.
+            </p>
+            <p>
+                I like understanding how all the pieces fit together — from routing and
+                validation on the backend, to state and UX on the frontend.
+            </p>
+        </div>
 
-    <!-- STORY -->
-    <section class="about-section fade-up">
-        <h2 class="about-section-title">Who I am</h2>
-        <p>
-            I&apos;m Sage Stockmans, a full stack developer in training with roots in
-            both Belgium and the United States. I&apos;m fluent in Dutch and English,
-            and I tend to stay calm and focused when things get complex or time‑sensitive.
-        </p>
-        <p>
-            I&apos;m currently studying Full Stack Development at SyntraPXL. What draws
-            me to full stack work is the creative freedom: being able to design
-            a database, build an API, wire up a frontend, and end with something
-            people can actually use — all in one flow.
-        </p>
+        <aside class="about-quick-card">
+            <h3>Quick facts</h3>
+            <ul>
+                <li><span>Location</span><strong>Arizona City · Hasselt ties</strong></li>
+                <li><span>Time pressure</span><strong>Comfortable under deadlines</strong></li>
+                <li><span>Collaboration</span><strong>Enjoys pair programming &amp; reviews</strong></li>
+                <li><span>Learning style</span><strong>Hands‑on projects &amp; experiments</strong></li>
+            </ul>
+        </aside>
     </section>
 
-    <br>
-
-    <!-- HOW I WORK -->
+    <!-- STACK / SKILLS CARD -->
     <section class="about-section fade-up">
-        <h2 class="about-section-title">How I work</h2>
-        <p>
-            I like clear structure, readable code, and making things robust enough
-            to handle real users, not just classroom demos. I&apos;m comfortable working
-            in both solo mode and in a team — splitting tasks, reviewing code, and
-            adapting when priorities change.
-        </p>
-        <p>
-            I work mainly with PHP, Laravel, MySQL, JavaScript, and Angular. I enjoy
-            debugging, tracing problems through the stack, and improving reliability:
-            better error handling, better data validation, and smoother user flows.
-        </p>
-
+        <h2 class="about-section-title">What I work with</h2>
         <div class="about-pill-grid">
             <div class="about-pill">
                 <span class="about-pill-label">Backend</span>
@@ -63,55 +81,70 @@
             </div>
             <div class="about-pill">
                 <span class="about-pill-label">Workflow</span>
-                <span class="about-pill-value">Agile &amp; Scrum, version control, CI‑curious</span>
+                <span class="about-pill-value">Agile &amp; Scrum, Git, code reviews</span>
             </div>
             <div class="about-pill">
                 <span class="about-pill-label">AI</span>
                 <span class="about-pill-value">Learned to interpret the results and always double‑check them</span>
             </div>
         </div>
+
+        <div class="about-stack-card">
+            <div>
+                <h3>How I like to build</h3>
+                <p>
+                    I care about clear structure, predictable APIs, and frontends that feel
+                    simple to use. I enjoy debugging weird bugs, improving error handling,
+                    and making sure the app is reliable enough to show to real users.
+                </p>
+            </div>
+            <div class="about-stack-tags demo-tags">
+                <span class="demo-tag">Clean structure</span>
+                <span class="demo-tag">Error handling</span>
+                <span class="demo-tag">Readable code</span>
+                <span class="demo-tag">Real users in mind</span>
+            </div>
+        </div>
     </section>
 
-    <br>
-
-    <!-- LEARNING & PROJECTS -->
+    <!-- CURRENT FOCUS CARD -->
     <section class="about-section fade-up">
-        <h2 class="about-section-title">What I&apos;m building</h2>
-        <p>
-            I like learning by shipping. My projects range from simple JavaScript
-            exercises like calculators and games, to full web apps that use APIs,
-            authentication, and databases. Each project is an excuse to try a new
-            pattern, a new tool, or a better way of structuring code.
-        </p>
-        <p>
-            I&apos;m especially interested in building reliable backends with clean,
-            well‑documented APIs, and single page frontends that feel fast and
-            straightforward to use.
-        </p>
-        <a class="link-cta" routerLink="/projects">
-            <span>Browse my projects</span><i>↗</i>
-        </a>
+        <h2 class="about-section-title">What I&apos;m working on now</h2>
+        <div class="about-current-card">
+            <div>
+                <p>
+                    I&apos;m focusing on projects that combine a PHP/Laravel backend with an
+                    Angular frontend: REST APIs, authentication, forms, and state.
+                </p>
+                <p>
+                    I&apos;m especially interested in reliability patterns, better error messages,
+                    and making it easy to understand what&apos;s going on in the system — even
+                    when something goes wrong.
+                </p>
+            </div>
+            <div class="about-current-links">
+                <a class="link-cta" routerLink="/projects">
+                    <span>See the projects behind this</span><i>↗</i>
+                </a>
+                <a class="link-cta" routerLink="/contact">
+                    <span>Reach out</span><i>→</i>
+                </a>
+            </div>
+        </div>
     </section>
-
-    <br>
 
     <!-- HUMAN SIDE -->
     <section class="about-section fade-up">
         <h2 class="about-section-title">Outside of code</h2>
         <p>
-            When I&apos;m not programming, you&apos;ll usually find me with music or games
-            — anything that mixes atmosphere, good storytelling, and a bit of tension.
-            I bring the same curiosity and persistence from those worlds into my work:
-            explore, experiment, and keep iterating until it feels right.
+            I&apos;m into music and games — anything with good atmosphere, tension, and
+            a story. That same mix of systems and feeling is what I like in software
+            too: not just code that works, but interfaces that feel considered.
         </p>
         <p>
             If you&apos;re looking for someone who enjoys problem‑solving, learns quickly,
-            and is comfortable taking ownership of a piece of the stack, I&apos;d be
-            happy to talk.
+            and likes taking ownership of a piece of the stack, I&apos;d be happy to talk.
         </p>
-        <a class="link-cta" routerLink="/contact">
-            <span>Get in touch</span><i>→</i>
-        </a>
     </section>
 
 </section>
