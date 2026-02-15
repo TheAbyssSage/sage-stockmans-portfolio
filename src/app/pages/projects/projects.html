@@ -35,22 +35,49 @@
         </div>
     </section>
 
-    <!-- TIMELINE LABEL -->
-    <p class="projects-timeline-label fade-up">
-        Timeline · newest first
-    </p>
+    <hr>
 
-    <!-- TIMELINE -->
-    <section class="projects-timeline fade-up">
-
-        <div *ngIf="loading" class="projects-loading">
-            Loading projects from GitHub…
+    <!-- TIMELINE LABEL & VIEW TOGGLE -->
+    <div class="projects-controls fade-up">
+        <p class="projects-timeline-label">
+            Timeline · newest first
+        </p>
+        <div class="projects-view-toggle">
+            <button
+                class="view-toggle-btn"
+                [class.active]="viewMode === 'timeline'"
+                (click)="toggleViewMode('timeline')"
+                aria-label="Timeline view">
+                Timeline
+            </button>
+            <button
+                class="view-toggle-btn"
+                [class.active]="viewMode === 'grid'"
+                (click)="toggleViewMode('grid')"
+                aria-label="Grid view">
+                Grid
+            </button>
+            <button
+                class="view-toggle-btn"
+                [class.active]="viewMode === 'list'"
+                (click)="toggleViewMode('list')"
+                aria-label="List view">
+                List
+            </button>
         </div>
+    </div>
 
-        <div *ngIf="!loading && error" class="projects-error">
-            {{ error }}
-        </div>
+    <!-- LOADING & ERROR STATES -->
+    <div *ngIf="loading" class="projects-loading fade-up">
+        Loading projects from GitHub…
+    </div>
 
+    <div *ngIf="!loading && error" class="projects-error fade-up">
+        {{ error }}
+    </div>
+
+    <!-- TIMELINE VIEW -->
+    <section *ngIf="viewMode === 'timeline' && !loading && !error" class="projects-timeline fade-up">
         <article *ngFor="let project of projects; let i = index" class="project-node"
             [class.project-node--highlight]="i === 0">
             <div class="project-node-dot"></div>
@@ -69,15 +96,34 @@
                     {{ project.description }}
                 </p>
 
+                <!-- <div class="project-node-metadata">
+                    <div class="metadata-badge" *ngIf="project.stars > 0">
+                        <span class="badge-icon">⭐</span>
+                        <span class="badge-value">{{ project.stars }}</span>
+                    </div>
+                    <div class="metadata-badge">
+                        <span class="badge-icon">📅</span>
+                        <span class="badge-value">{{ project.lastUpdated | date: 'short' }}</span>
+                    </div>
+                    <div class="metadata-badge" *ngIf="project.size > 0">
+                        <span class="badge-icon">📦</span>
+                        <span class="badge-value">{{ project.size }} KB</span>
+                    </div>
+                </div> -->
+
                 <dl class="project-node-meta">
                     <div>
                         <dt>Type</dt>
                         <dd>{{ project.type }}</dd>
                     </div>
-                    <div>
+                    <!-- <div>
                         <dt>Stack</dt>
                         <dd>{{ project.stack }}</dd>
-                    </div>
+                    </div> -->
+                    <!-- <div class="metadata-badge" *ngIf="project.size > 0">
+                        <span class="badge-icon">📦</span>
+                        <span class="badge-value">{{ project.size }} KB</span>
+                    </div> -->
                     <div>
                         <dt>Focus</dt>
                         <dd>{{ project.focus }}</dd>
@@ -102,7 +148,91 @@
                 </div>
             </div>
         </article>
+    </section>
 
+    <!-- GRID VIEW -->
+    <section *ngIf="viewMode === 'grid' && !loading && !error" class="projects-grid fade-up">
+        <article *ngFor="let project of projects; let i = index" class="grid-card"
+            [class.grid-card--highlight]="i === 0">
+            <div class="grid-card-header">
+                <h2 class="grid-card-title">{{ project.title }}</h2>
+                <span *ngIf="i === 0" class="project-node-chip">Newest</span>
+            </div>
+
+            <p class="grid-card-description">
+                {{ project.description }}
+            </p>
+
+            <div class="grid-card-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Stack</span>
+                    <span class="meta-value">{{ project.stack }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Created</span>
+                    <span class="meta-value">{{ project.date | date: 'MMM y' }}</span>
+                </div>
+            </div>
+
+            <div class="grid-card-badges">
+                <span class="grid-badge" *ngIf="project.stars > 0">
+                    ⭐ {{ project.stars }}
+                </span>
+                <span class="grid-badge">
+                    📅 {{ project.lastUpdated | date: 'short' }}
+                </span>
+            </div>
+
+            <div class="grid-card-tags demo-tags">
+                <span *ngFor="let tag of project.tags" class="demo-tag">
+                    {{ tag }}
+                </span>
+            </div>
+
+            <div class="grid-card-links">
+                <a class="link-cta" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                    <span>GitHub</span><i>↗</i>
+                </a>
+                <a *ngIf="project.liveUrl" class="link-cta" [href]="project.liveUrl" target="_blank"
+                    rel="noopener noreferrer">
+                    <span>Live</span><i>↗</i>
+                </a>
+            </div>
+        </article>
+    </section>
+
+    <!-- LIST VIEW -->
+    <section *ngIf="viewMode === 'list' && !loading && !error" class="projects-list fade-up">
+        <div class="list-header">
+            <div class="list-col-title">Project</div>
+            <div class="list-col-stack">Stack</div>
+            <div class="list-col-meta">Stats</div>
+            <div class="list-col-links">Links</div>
+        </div>
+        <article *ngFor="let project of projects; let i = index" class="list-row"
+            [class.list-row--highlight]="i === 0">
+            <div class="list-col-title">
+                <div class="list-title-main">{{ project.title }}</div>
+                <div class="list-title-meta">{{ project.description }}</div>
+                <span *ngIf="i === 0" class="project-node-chip list-chip">Newest</span>
+            </div>
+            <div class="list-col-stack">
+                <span class="stack-chip">{{ project.primaryLanguage }}</span>
+            </div>
+            <div class="list-col-meta">
+                <span *ngIf="project.stars > 0" class="stat-badge">⭐ {{ project.stars }}</span>
+                <span class="stat-badge">{{ project.lastUpdated | date: 'MMM d' }}</span>
+            </div>
+            <div class="list-col-links">
+                <a class="link-cta" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                    GitHub<i>↗</i>
+                </a>
+                <a *ngIf="project.liveUrl" class="link-cta" [href]="project.liveUrl" target="_blank"
+                    rel="noopener noreferrer">
+                    Live<i>↗</i>
+                </a>
+            </div>
+        </article>
     </section>
 
 </section>
