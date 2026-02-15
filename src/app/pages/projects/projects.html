@@ -1,1 +1,108 @@
-<p>projects works!</p>
+<!-- src/app/pages/projects/projects.component.html -->
+
+<section class="projects-page">
+
+    <!-- HEADER -->
+    <section class="projects-header fade-up">
+        <p class="section-label">Projects</p>
+        <h1 class="projects-title">
+            A timeline of things I&apos;m building as I learn.
+        </h1>
+        <p class="projects-subtitle">
+            Newest at the top · real projects, small experiments, and everything in‑between.
+        </p>
+    </section>
+
+    <!-- INTRO CARD -->
+    <section class="projects-intro-card fade-up">
+        <div>
+            <h2>How I use projects to learn</h2>
+            <p>
+                Each project here taught me something—about APIs, UI, architecture, or just
+                debugging weird edge cases. This page is more of a log than a showcase:
+                honest, work‑in‑progress, and updated as I grow.
+            </p>
+            <p>
+                I focus on PHP/Laravel backends, Angular frontends, and practical browser‑side
+                JavaScript. Some projects are solo, others are built with classmates.
+            </p>
+        </div>
+        <div class="projects-intro-tags demo-tags">
+            <span class="demo-tag">Full stack</span>
+            <span class="demo-tag">APIs</span>
+            <span class="demo-tag">UI &amp; UX</span>
+            <span class="demo-tag">Learning log</span>
+        </div>
+    </section>
+
+    <!-- TIMELINE LABEL -->
+    <p class="projects-timeline-label fade-up">
+        Timeline · newest first
+    </p>
+
+    <!-- TIMELINE -->
+    <section class="projects-timeline fade-up">
+
+        <div *ngIf="loading" class="projects-loading">
+            Loading projects from GitHub…
+        </div>
+
+        <div *ngIf="!loading && error" class="projects-error">
+            {{ error }}
+        </div>
+
+        <article *ngFor="let project of projects; let i = index" class="project-node"
+            [class.project-node--highlight]="i === 0">
+            <div class="project-node-dot"></div>
+            <div class="project-node-content">
+                <header class="project-node-header">
+                    <div class="project-node-title-block">
+                        <h2 class="project-node-title">{{ project.title }}</h2>
+                        <span *ngIf="i === 0" class="project-node-chip">Newest</span>
+                    </div>
+                    <time class="project-node-date">
+                        {{ project.date | date: 'MMMM d, y' }}
+                    </time>
+                </header>
+
+                <p class="project-node-text">
+                    {{ project.description }}
+                </p>
+
+                <dl class="project-node-meta">
+                    <div>
+                        <dt>Type</dt>
+                        <dd>{{ project.type }}</dd>
+                    </div>
+                    <div>
+                        <dt>Stack</dt>
+                        <dd>{{ project.stack }}</dd>
+                    </div>
+                    <div>
+                        <dt>Focus</dt>
+                        <dd>{{ project.focus }}</dd>
+                    </div>
+                </dl>
+
+                <div class="project-node-footer">
+                    <div class="project-node-tags demo-tags">
+                        <span *ngFor="let tag of project.tags" class="demo-tag">
+                            {{ tag }}
+                        </span>
+                    </div>
+                    <div class="project-node-links">
+                        <a class="link-cta" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                            <span>View on GitHub</span><i>↗</i>
+                        </a>
+                        <a *ngIf="project.liveUrl" class="link-cta" [href]="project.liveUrl" target="_blank"
+                            rel="noopener noreferrer">
+                            <span>View live</span><i>↗</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+</section>
