@@ -1,0 +1,32 @@
+# Session Context
+
+**Session ID:** af0fd07c-e8b5-424a-a277-66cf50c58a3a
+
+**Commit Message:** Option 1
+
+## Prompt
+
+Option 1
+
+## Summary
+
+Perfect! I've updated the code to implement progressive loading. Here's what changed:
+
+**Before:** 
+- Fetched repos → waited for all language requests → then displayed everything
+
+**Now:**
+- Fetches repos → displays projects immediately with basic data → loads language details in the background
+
+The key changes:
+1. Projects are mapped and displayed right after fetching the repo list (line 58-60)
+2. `loading` is set to `false` immediately (line 66), so the UI shows the projects
+3. Language requests now run in the background (line 69-77) and update individual projects as they complete
+
+Since `mapRepoToProject` passes an empty object `{}` initially, it will use the `repo.language` field as a fallback. As each language API call completes, it updates that specific project with the full language data.
+
+This should make the projects load instantly now!
+
+## Key Actions
+
+- - **Edit**: /Users/sage/Desktop/Projects/sage-stockmans/src/app/pages/projects/projects.ts
