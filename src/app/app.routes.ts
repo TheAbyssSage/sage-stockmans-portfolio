@@ -4,13 +4,13 @@ import { Terms } from './components/terms/terms';
 import { Imprint } from './components/imprint/imprint';
 import { Home } from './pages/home/home';
 import { About } from './pages/about/about';
-import { Projects } from './pages/projects/projects';
+import { ProjectsComponent } from './pages/projects/projects';
 import { Contact } from './pages/contact/contact';
 
 export const routes: Routes = [
   { path: '', component: Home, pathMatch: 'full' },
   { path: 'about', component: About },
-  { path: 'projects', component: Projects },
+  { path: 'projects', component: ProjectsComponent },
   { path: 'contact', component: Contact },
   { path: 'privacy', component: Privacy },
   { path: 'terms', component: Terms },
