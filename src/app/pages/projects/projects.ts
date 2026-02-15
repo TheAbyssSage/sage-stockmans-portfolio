@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; // <-- no HttpClientModule here
 import { CommonModule, DatePipe } from '@angular/common';
 
 interface GithubRepo {
@@ -32,7 +32,7 @@ interface ProjectEntry {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [RouterModule, HttpClientModule, CommonModule, DatePipe],
+  imports: [RouterModule, CommonModule, DatePipe], // <-- remove HttpClientModule
   templateUrl: './projects.html',
   styleUrls: ['./projects.css'],
 })
@@ -48,21 +48,33 @@ export class ProjectsComponent implements OnInit {
   }
 
   private loadProjectsFromGithub(): void {
-    const url = `https://api.github.com/users/TheAbyssSage/repos?sort=updated`;
+    const url = `https://api.github.com/users/TheAbyssSage/repos?sort=updated&per_page=50`;
 
     this.http.get<GithubRepo[]>(url).subscribe({
       next: repos => {
-        // Filter to only show “real” projects if you want:
         const filtered = repos.filter(repo => !repo.fork && !repo.archived);
 
-        this.projects = filtered.map(repo => this.mapRepoToProject(repo));
+        // Show projects immediately with basic data
+        this.projects = filtered.map(repo =>
+          this.mapRepoToProject(repo, {})
+        );
 
-        // newest first
         this.projects.sort(
           (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         );
 
         this.loading = false;
+
+        // Load languages in the background
+        filtered.forEach((repo, index) => {
+          this.http.get<Record<string, number>>(
+            `https://api.github.com/repos/TheAbyssSage/${repo.name}/languages`
+          ).subscribe({
+            next: languagesMap => {
+              this.projects[index] = this.mapRepoToProject(repo, languagesMap);
+            }
+          });
+        });
       },
       error: () => {
         this.error = 'Could not load projects from GitHub.';
@@ -71,32 +83,30 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  private mapRepoToProject(repo: GithubRepo): ProjectEntry {
+
+  private mapRepoToProject(
+    repo: GithubRepo,
+    languagesMap: Record<string, number>
+  ): ProjectEntry {
     const created = new Date(repo.created_at);
-    const dateString = created.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
 
-    const mainLang = repo.language ?? 'Mixed stack';
+    const allLanguages = Object.keys(languagesMap);
+    const mainLang = allLanguages[0] ?? repo.language ?? 'Mixed stack';
 
-    const topics = repo.topics && repo.topics.length > 0
-      ? repo.topics
-      : [];
+    const topics = repo.topics && repo.topics.length > 0 ? repo.topics : [];
 
     return {
       title: repo.name.replace(/-/g, ' '),
       description: repo.description ?? 'No description added yet.',
-      date: repo.created_at,
+      date: repo.created_at, // still ISO string for | date pipe
       type: 'GitHub repository',
-      stack: mainLang,
+      stack: allLanguages.length > 0 ? allLanguages.join(' · ') : mainLang,
       focus: 'Learning by building & iterating',
       githubUrl: repo.html_url,
       liveUrl: repo.homepage || undefined,
       tags: [
-        mainLang,
-        ...topics.slice(0, 3), // limit number of chips
+        ...allLanguages.slice(0, 3),
+        ...topics.slice(0, 3),
       ].filter(Boolean),
     };
   }
