@@ -42,25 +42,19 @@
         <p class="projects-timeline-label">
             Timeline · newest first
         </p>
+        <p class="projects-timeline-label">
+            <strong>Loads instantly. If not, refresh.</strong>
+        </p>
         <div class="projects-view-toggle">
-            <button
-                class="view-toggle-btn"
-                [class.active]="viewMode === 'timeline'"
-                (click)="toggleViewMode('timeline')"
-                aria-label="Timeline view">
+            <button class="view-toggle-btn" [class.active]="viewMode === 'timeline'"
+                (click)="toggleViewMode('timeline')" aria-label="Timeline view">
                 Timeline
             </button>
-            <button
-                class="view-toggle-btn"
-                [class.active]="viewMode === 'grid'"
-                (click)="toggleViewMode('grid')"
+            <button class="view-toggle-btn" [class.active]="viewMode === 'grid'" (click)="toggleViewMode('grid')"
                 aria-label="Grid view">
                 Grid
             </button>
-            <button
-                class="view-toggle-btn"
-                [class.active]="viewMode === 'list'"
-                (click)="toggleViewMode('list')"
+            <button class="view-toggle-btn" [class.active]="viewMode === 'list'" (click)="toggleViewMode('list')"
                 aria-label="List view">
                 List
             </button>
@@ -209,8 +203,7 @@
             <div class="list-col-meta">Stats</div>
             <div class="list-col-links">Links</div>
         </div>
-        <article *ngFor="let project of projects; let i = index" class="list-row"
-            [class.list-row--highlight]="i === 0">
+        <article *ngFor="let project of projects; let i = index" class="list-row" [class.list-row--highlight]="i === 0">
             <div class="list-col-title">
                 <div class="list-title-main">{{ project.title }}</div>
                 <div class="list-title-meta">{{ project.description }}</div>
