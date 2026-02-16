@@ -2,3 +2,8 @@ tmp/
 settings.local.json
 metadata/
 logs/
+entire.log/
+context.md/
+full.jsonl/
+summary.txt/
+prompt.txt/
