@@ -1,59 +1,38 @@
-# SageStockmans
+# Sage Stockmans — Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
+Welcome to my personal portfolio site. This project is where I experiment, learn, and showcase the things I’m building as a full stack developer in training.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Frontend:** Angular, TypeScript, HTML, CSS
+- **Design:** Custom “Petrichor” theme (Playfair Display + DM Mono, earthy color palette)
+- **Data:** GitHub REST API for dynamic project listing
 
-```bash
+## Features
+
+- Clean, editorial-style layout with a focus on readability.
+- Project timeline that pulls repositories directly from my GitHub profile.
+- Multiple views for projects (timeline, grid, list) with sortable, enriched metadata.
+- Separate pages for Home, About, Projects, and Contact.
+
+## Getting Started
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/TheAbyssSage/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. Start server in folder:
+  ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. Enjoy!
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+<br> <hr>
+Deployment:
+  This project is deployed with Netlify. Every push to the main branch triggers a new build and deploy.
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
