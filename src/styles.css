@@ -99,8 +99,8 @@ body::before {
 }
 
 .demo-tag:hover {
-    color: var(--storm);
-    border-color: var(--storm);
+    color: var(--dust);
+    border-color: var(--ochre);
 }
 
 
