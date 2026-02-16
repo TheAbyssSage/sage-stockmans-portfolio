@@ -94,11 +94,13 @@ body::before {
     border: 1px solid;
     cursor: default;
     transition: all 0.2s;
+    border-color: currentColor;
+    color: var(--clay);
 }
 
 .demo-tag:hover {
-    background: currentColor;
-    color: var(--stone);
+    color: var(--storm);
+    border-color: var(--storm);
 }
 
 
@@ -139,16 +141,22 @@ body::before {
     font-size: 0.75rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--storm);
+    color: var(--clay);
     text-decoration: none;
+    transition: all 0.2s;
 }
 
 .link-cta span {
     border-bottom: 1px solid var(--ochre);
+    transition: border-color 0.2s;
+}
+
+.link-cta:hover {
+    color: var(--ochre);
 }
 
 .link-cta:hover span {
-    border-color: var(--storm);
+    border-color: var(--ochre);
 }
 
 .link-cta i {
