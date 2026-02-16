@@ -1,10 +1,11 @@
 // src/app/pages/projects/projects.ts
 
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, CommonModule, DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule, DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ProjectsCacheService } from '../../services/projects-cache.service';
 
 interface GithubRepo {
   name: string;
@@ -24,7 +25,7 @@ interface GithubRepo {
 interface ProjectEntry {
   title: string;
   description: string;
-  date: string; // created_at ISO
+  date: string;          // created_at ISO
   type: string;
   stack: string;
   focus: string;
@@ -32,8 +33,8 @@ interface ProjectEntry {
   liveUrl?: string;
   tags: string[];
   stars: number;
-  lastUpdated: string; // pushed_at ISO
-  size: number; // in KB
+  lastUpdated: string;   // pushed_at ISO
+  size: number;          // in KB from GitHub
   primaryLanguage: string;
 }
 
@@ -55,6 +56,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private cacheService: ProjectsCacheService,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -62,6 +64,16 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check cache first
+    const cached = this.cacheService.get();
+    if (cached && cached.length > 0) {
+      // Use cached data
+      this.projects = cached;
+      this.loading = false;
+      return;
+    }
+
+    // No cache, fetch from GitHub
     this.loadProjectsFromGithub();
   }
 
@@ -99,6 +111,7 @@ export class ProjectsComponent implements OnInit {
         );
 
         this.projects = basicProjects;
+        this.cacheService.set(basicProjects);
         this.loading = false;
 
         // 3) Enrich with full languages in the background
@@ -110,20 +123,21 @@ export class ProjectsComponent implements OnInit {
 
         Promise.all(
           languageRequests.map(req =>
-            req
-              .toPromise()
-              .catch(() => ({} as Record<string, number>)) // ignore per-repo language errors
+            req.toPromise().catch(
+              () => ({} as Record<string, number>) // ignore per-repo language errors
+            )
           )
         ).then(languageResults => {
-          // Map again with languages
           const enrichedProjects = filtered.map((repo, index) =>
             this.mapRepoToProject(repo, languageResults[index] || {})
           );
 
-          // Sort again by created_at so order stays consistent
-          this.projects = enrichedProjects.sort(
+          const sorted = enrichedProjects.sort(
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
           );
+
+          this.projects = sorted;
+          this.cacheService.set(sorted);
         });
       },
       error: () => {
