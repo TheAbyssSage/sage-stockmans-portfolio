@@ -69,12 +69,12 @@
 
             <div class="demo-right">
                 <div class="demo-stat">
-                    <span class="demo-stat-num">8+</span>
+                    <span class="demo-stat-num">{{ projectCount }}{{ projectCount > 0 ? '+' : '' }}</span>
                     <span class="demo-stat-label">Projects &amp; experiments</span>
                 </div>
                 <div class="demo-stat">
-                    <span class="demo-stat-num">3</span>
-                    <span class="demo-stat-label">Stacks in use (PHP, Laravel, Angular)</span>
+                    <span class="demo-stat-num">{{ languages.length }}</span>
+                    <span class="demo-stat-label">Languages in use{{ languages.length !== 1 ? 's' : '' }}</span>
                 </div>
                 <div class="demo-stat">
                     <span class="demo-stat-num">∞</span>
