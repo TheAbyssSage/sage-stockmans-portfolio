@@ -1,1 +1,153 @@
-<p>experience works!</p>
+<!-- src/app/pages/experience/experience.html -->
+
+<section class="experience-page">
+
+    <!-- HEADER -->
+    <section class="experience-header fade-up">
+        <p class="section-label">Experience</p>
+        <h1 class="experience-title">
+            Work, education, and how I&apos;m learning to use AI responsibly.
+        </h1>
+        <p class="experience-subtitle">
+            A git-branch inspired overview of jobs, school, and extra learning.
+        </p>
+    </section>
+
+    <!-- LEGEND -->
+    <section class="experience-legend fade-up">
+        <div class="legend-item">
+            <span class="legend-dot legend-dot--work"></span>
+            <span>Work</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-dot legend-dot--education"></span>
+            <span>Education</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-dot legend-dot--ai"></span>
+            <span>AI / Agentic workflows</span>
+        </div>
+    </section>
+
+    <!-- GIT-BRANCH STYLE GRID -->
+    <section class="experience-grid fade-up">
+        <!-- Vertical lanes -->
+        <div class="experience-lane experience-lane--work">
+            <h2>Work</h2>
+            <div class="lane-line"></div>
+            <div class="lane-entries">
+                <article class="exp-card exp-card--work"
+                    *ngFor="let entry of getEntriesForTrack('work'); let i = index">
+                    <div class="exp-node">
+                        <span class="exp-node-dot"></span>
+                        <span class="exp-node-line" *ngIf="i !== (getEntriesForTrack('work').length - 1)"></span>
+                    </div>
+
+                    <div class="exp-card-body">
+                        <header class="exp-card-header">
+                            <h3>{{ entry.title }}</h3>
+                            <p class="exp-meta-line">
+                                {{ entry.organization }}
+                                <span *ngIf="entry.location">· {{ entry.location }}</span>
+                            </p>
+                            <p class="exp-period">{{ entry.periodLabel }}</p>
+                        </header>
+                        <p class="exp-summary">
+                            {{ entry.summary }}
+                        </p>
+                        <p *ngIf="entry.details" class="exp-details">
+                            {{ entry.details }}
+                        </p>
+                        <div class="exp-tags demo-tags">
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="experience-lane experience-lane--education">
+            <h2>Education</h2>
+            <div class="lane-line"></div>
+            <div class="lane-entries">
+                <article class="exp-card exp-card--education"
+                    *ngFor="let entry of getEntriesForTrack('education'); let i = index">
+                    <div class="exp-node">
+                        <span class="exp-node-dot"></span>
+                        <span class="exp-node-line" *ngIf="i !== (getEntriesForTrack('education').length - 1)"></span>
+                    </div>
+
+                    <div class="exp-card-body">
+                        <header class="exp-card-header">
+                            <h3>{{ entry.title }}</h3>
+                            <p class="exp-meta-line">
+                                {{ entry.organization }}
+                                <span *ngIf="entry.location">· {{ entry.location }}</span>
+                            </p>
+                            <p class="exp-period">{{ entry.periodLabel }}</p>
+                        </header>
+                        <p class="exp-summary">
+                            {{ entry.summary }}
+                        </p>
+                        <p *ngIf="entry.details" class="exp-details">
+                            {{ entry.details }}
+                        </p>
+                        <div class="exp-tags demo-tags">
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="experience-lane experience-lane--ai">
+            <h2>AI / Extra</h2>
+            <div class="lane-line"></div>
+            <div class="lane-entries">
+                <article class="exp-card exp-card--ai" *ngFor="let entry of getEntriesForTrack('ai'); let i = index">
+                    <div class="exp-node">
+                        <span class="exp-node-dot"></span>
+                        <span class="exp-node-line" *ngIf="i !== (getEntriesForTrack('ai').length - 1)"></span>
+                    </div>
+
+                    <div class="exp-card-body">
+                        <header class="exp-card-header">
+                            <h3>{{ entry.title }}</h3>
+                            <p class="exp-meta-line">
+                                {{ entry.organization }}
+                                <span *ngIf="entry.location">· {{ entry.location }}</span>
+                            </p>
+                            <p class="exp-period">{{ entry.periodLabel }}</p>
+                        </header>
+                        <p class="exp-summary">
+                            {{ entry.summary }}
+                        </p>
+                        <p *ngIf="entry.details" class="exp-details">
+                            {{ entry.details }}
+                        </p>
+                        <div class="exp-tags demo-tags">
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="experience-footer fade-up">
+        <p>
+            I use what I learned in customer-facing jobs, school, and AI/agentic workflows
+            to build software that&apos;s reliable, understandable, and actually pleasant to use.
+        </p>
+        <div class="experience-footer-links">
+            <a class="link-cta" routerLink="/projects">
+                <span>See projects</span><i>↗</i>
+            </a>
+            <a class="link-cta" routerLink="/contact">
+                <span>Get in touch</span><i>→</i>
+            </a>
+        </div>
+    </section>
+
+</section>
