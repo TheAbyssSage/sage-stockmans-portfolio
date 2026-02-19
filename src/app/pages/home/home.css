@@ -110,6 +110,11 @@
     color: var(--petal);
 }
 
+.intro-tags .intro-tag--aiworkflow {
+    border-color: var(--ochre);
+    color: var(--ochre);
+}
+
 /* FEATURED PROJECT ("demo-card" style) */
 .home-feature {
     padding: 3rem 0 0;
