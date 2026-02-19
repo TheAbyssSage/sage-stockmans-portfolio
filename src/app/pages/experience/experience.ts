@@ -43,7 +43,7 @@ export class ExperienceComponent {
       periodLabel: 'Aug 2025 – Sep 2025',
       summary: 'Cashier and floor support in a DIY store.',
       details:
-        'Stocked shelves, maintained displays, processed transactions accurately, and assisted customers in a busy retail environment.',
+        'Stocked shelves, maintained displays, processed transactions, and assisted customers in a busy retail environment.',
       tags: ['Customer service', 'Retail', 'Cashier'],
     },
     {
@@ -56,7 +56,7 @@ export class ExperienceComponent {
       periodLabel: 'Apr 2025 – Jun 2025',
       summary: 'Bartender and server in a high-volume club.',
       details:
-        'Mixed drinks, handled orders and payments, and solved on-the-spot issues while keeping service friendly and efficient.',
+        'Mixed drinks, handled orders, and solved on-the-spot issues while keeping service friendly and efficient.',
       tags: ['Hospitality', 'Fast-paced', 'Customer service'],
     },
     {
@@ -107,22 +107,22 @@ export class ExperienceComponent {
       track: 'education',
       start: '2025-09',
       end: '2026-06',
-      periodLabel: '2025 – 2026 (ongoing)',
+      periodLabel: '2025.09 – 2026 (ongoing)',
       summary:
         'Full stack development program focused on backend, frontend, and software craftsmanship.',
       details:
         'Coursework includes OO programming, REST APIs, PHP (OOP), Laravel, Node.js, security, frontend (Angular/JS), and Agile workflows.',
-      tags: ['Full stack', 'PHP/Laravel', 'Angular', 'REST APIs'],
+      tags: ['Full stack', 'PHP/Laravel', 'Angular', 'REST APIs', 'MySQL', 'Database design', 'TypeScript'],
     },
     {
-      title: 'Full Stack Developer – VDO 2025',
-      organization: 'SyntraPXL',
+      title: 'Dutch - KU-Leuven',
+      organization: 'Lauven Language Institute · Leuven, Belgium',
       track: 'education',
-      start: '2025-09',
-      end: '2026-06',
-      periodLabel: '2025 – 2026',
+      start: '2025-02',
+      end: '2025-06',
+      periodLabel: '2025.02 – 2025.06',
       summary:
-        'Extended modules on backend frameworks, database design, and modern frontend tooling.',
+        'High level Dutch language course to improve communication skills in a professional context.',
       tags: ['MySQL', 'Database design', 'TypeScript', 'Best practices'],
     },
     {
@@ -136,6 +136,7 @@ export class ExperienceComponent {
       summary: 'Completed secondary education in Arizona.',
       tags: ['English', 'General education'],
     },
+    
 
     // AI / EXTRA
     {
