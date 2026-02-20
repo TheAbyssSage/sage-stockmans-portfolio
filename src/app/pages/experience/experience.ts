@@ -1,7 +1,7 @@
 // src/app/pages/experience/experience.ts
 
 import { Component } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 type ExperienceTrack = 'work' | 'education' | 'ai';
@@ -22,7 +22,7 @@ interface ExperienceEntry {
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [CommonModule, RouterModule, DatePipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './experience.html',
   styleUrls: ['./experience.css'],
 })
@@ -123,7 +123,7 @@ export class ExperienceComponent {
       periodLabel: '2025.02 – 2025.06',
       summary:
         'High level Dutch language course to improve communication skills in a professional context.',
-      tags: ['MySQL', 'Database design', 'TypeScript', 'Best practices'],
+      tags: ['Dutch language', 'Communication skills'],
     },
     {
       title: 'Marana High School',
