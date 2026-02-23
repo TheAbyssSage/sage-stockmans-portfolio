@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-privacy',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './privacy.html',
-  styleUrl: './privacy.css',
+  styleUrls: ['./privacy.css'],
 })
-export class Privacy {
-
-}
+export class PrivacyComponent {}
