@@ -1,15 +1,47 @@
-// src/app/pages/projects/projects.component.ts
+// src/app/pages/projects/projects.ts
 
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule, DatePipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ProjectsService, ProjectEntry } from '../../pages/projects/projects.service';
+import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ProjectsCacheService } from '../../services/projects-cache.service';
+
+interface GithubRepo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  created_at: string;
+  pushed_at: string;
+  language: string | null;
+  fork: boolean;
+  archived: boolean;
+  topics?: string[];
+  stargazers_count: number;
+  size: number;
+}
+
+interface ProjectEntry {
+  title: string;
+  description: string;
+  date: string;          // created_at ISO
+  type: string;
+  stack: string;
+  focus: string;
+  githubUrl: string;
+  liveUrl?: string;
+  tags: string[];
+  stars: number;
+  lastUpdated: string;   // pushed_at ISO
+  size: number;          // in KB from GitHub
+  primaryLanguage: string;
+}
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [RouterModule, CommonModule, DatePipe, HttpClientModule],
+  imports: [RouterModule, HttpClientModule, CommonModule, DatePipe],
   templateUrl: './projects.html',
   styleUrls: ['./projects.css'],
 })
@@ -19,60 +51,127 @@ export class ProjectsComponent implements OnInit {
   error = '';
   viewMode: 'timeline' | 'grid' | 'list' = 'timeline';
 
+  private readonly username = 'TheAbyssSage';
   private isBrowser: boolean;
 
   constructor(
-    private projectsService: ProjectsService,
+    private http: HttpClient,
+    private cacheService: ProjectsCacheService,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
-    console.log('[ProjectsComponent] isBrowser =', this.isBrowser);
+    this.loadViewMode();
   }
 
   ngOnInit(): void {
-    this.loadViewMode();
-
-    if (!this.isBrowser) {
-      console.log('[ProjectsComponent] SSR init, skipping fetch');
+    // Check cache first
+    const cached = this.cacheService.get();
+    if (cached && cached.length > 0) {
+      // Use cached data
+      this.projects = cached;
+      this.loading = false;
       return;
     }
 
-    console.log('[ProjectsComponent] Browser init, starting fetch');
-
-    this.projectsService.getProjects().subscribe({
-      next: (data) => {
-        this.projects = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('[ProjectsComponent] Service error:', err);
-        this.error = 'Could not load projects.';
-        this.loading = false;
-      }
-    });
+    // No cache, fetch from GitHub
+    this.loadProjectsFromGithub();
   }
 
   toggleViewMode(mode: 'timeline' | 'grid' | 'list'): void {
     this.viewMode = mode;
     if (this.isBrowser) {
-      try {
-        localStorage.setItem('projectsViewMode', mode);
-      } catch {
-        // ignore
-      }
+      localStorage.setItem('projectsViewMode', mode);
     }
   }
 
   private loadViewMode(): void {
     if (!this.isBrowser) return;
-    try {
-      const saved = localStorage.getItem('projectsViewMode');
-      if (saved === 'timeline' || saved === 'grid' || saved === 'list') {
-        this.viewMode = saved;
-      }
-    } catch {
-      // ignore
+
+    const saved = localStorage.getItem('projectsViewMode');
+    if (saved === 'timeline' || saved === 'grid' || saved === 'list') {
+      this.viewMode = saved;
     }
   }
+
+  private loadProjectsFromGithub(): void {
+    const url = `https://api.github.com/users/${this.username}/repos?sort=created&per_page=50`;
+
+    this.http.get<GithubRepo[]>(url).subscribe({
+      next: repos => {
+        const filtered = repos.filter(repo => !repo.fork && !repo.archived);
+
+        // 1) Show projects immediately using only basic repo data
+        let basicProjects = filtered.map(repo =>
+          this.mapRepoToProject(repo, {})
+        );
+
+        // 2) Sort by creation date: newest first
+        basicProjects = basicProjects.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+
+        this.projects = basicProjects;
+        this.cacheService.set(basicProjects);
+        this.loading = false;
+
+        // 3) Enrich with full languages in the background
+        const languageRequests = filtered.map(repo =>
+          this.http.get<Record<string, number>>(
+            `https://api.github.com/repos/${this.username}/${repo.name}/languages`
+          )
+        );
+
+        Promise.all(
+          languageRequests.map(req =>
+            req.toPromise().catch(
+              () => ({} as Record<string, number>) // ignore per-repo language errors
+            )
+          )
+        ).then(languageResults => {
+          const enrichedProjects = filtered.map((repo, index) =>
+            this.mapRepoToProject(repo, languageResults[index] || {})
+          );
+
+          const sorted = enrichedProjects.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+
+          this.projects = sorted;
+          this.cacheService.set(sorted);
+        });
+      },
+      error: () => {
+        this.error = 'Could not load projects from GitHub.';
+        this.loading = false;
+      },
+    });
+  }
+
+  private mapRepoToProject(
+    repo: GithubRepo,
+    languagesMap: Record<string, number>
+  ): ProjectEntry {
+    const allLanguages = Object.keys(languagesMap);
+    const mainLang = allLanguages[0] ?? repo.language ?? 'Mixed stack';
+    const topics = repo.topics && repo.topics.length > 0 ? repo.topics : [];
+
+    return {
+      title: repo.name.replace(/-/g, ' '),
+      description: repo.description ?? 'No description added yet.',
+      date: repo.created_at,
+      type: 'GitHub repository',
+      stack: allLanguages.length > 0 ? allLanguages.join(' · ') : mainLang,
+      focus: 'Learning by building & iterating',
+      githubUrl: repo.html_url,
+      liveUrl: repo.homepage || undefined,
+      tags: [
+        ...allLanguages.slice(0, 3),
+        ...topics.slice(0, 3),
+      ].filter(Boolean),
+      stars: repo.stargazers_count,
+      lastUpdated: repo.pushed_at,
+      size: repo.size,
+      primaryLanguage: mainLang,
+    };
+  }
 }
-``

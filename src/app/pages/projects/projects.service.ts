@@ -16,8 +16,6 @@ interface GithubRepo {
     fork: boolean;
     archived: boolean;
     topics?: string[];
-    stargazers_count: number;
-    size: number;
 }
 
 export interface ProjectEntry {
@@ -30,10 +28,6 @@ export interface ProjectEntry {
     githubUrl: string;
     liveUrl?: string;
     tags: string[];
-    stars: number;
-    lastUpdated: string;
-    size: number;
-    primaryLanguage: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -44,6 +38,7 @@ export class ProjectsService {
     constructor(private http: HttpClient) { }
 
     getProjects(): Observable<ProjectEntry[]> {
+        // If already loaded, return cached observable
         if (this.projects$) {
             return this.projects$;
         }
@@ -53,34 +48,48 @@ export class ProjectsService {
         this.projects$ = this.http.get<GithubRepo[]>(url).pipe(
             map(repos => {
                 const filtered = repos.filter(repo => !repo.fork && !repo.archived);
-
-                return filtered.map(repo => this.mapRepoToProject(repo));
+                const basicProjects = filtered.map(repo =>
+                    this.mapRepoToProject(repo, {})
+                );
+                // Sort newest by created_at
+                basicProjects.sort(
+                    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+                );
+                return basicProjects;
             }),
-            catchError(() => of([])), // Return empty array on error
+            // If GitHub fails, return empty list so UI doesn't break
+            catchError(() => of([])),
+            // Cache the result for future subscribers
             shareReplay(1)
         );
 
         return this.projects$;
     }
 
-    private mapRepoToProject(repo: GithubRepo): ProjectEntry {
+    // Optional: method to enrich with languages later if you want
+    // (you can add this once basic caching works)
+
+    private mapRepoToProject(
+        repo: GithubRepo,
+        languagesMap: Record<string, number>
+    ): ProjectEntry {
+        const allLanguages = Object.keys(languagesMap);
+        const mainLang = allLanguages[0] ?? repo.language ?? 'Mixed stack';
         const topics = repo.topics && repo.topics.length > 0 ? repo.topics : [];
-        const mainLang = repo.language ?? 'Mixed stack';
 
         return {
             title: repo.name.replace(/-/g, ' '),
             description: repo.description ?? 'No description added yet.',
             date: repo.created_at,
             type: 'GitHub repository',
-            stack: mainLang,
+            stack: allLanguages.length > 0 ? allLanguages.join(' · ') : mainLang,
             focus: 'Learning by building & iterating',
             githubUrl: repo.html_url,
             liveUrl: repo.homepage || undefined,
-            tags: [...topics.slice(0, 3)].filter(Boolean),
-            stars: repo.stargazers_count,
-            lastUpdated: repo.pushed_at,
-            size: repo.size,
-            primaryLanguage: mainLang,
+            tags: [
+                ...allLanguages.slice(0, 3),
+                ...topics.slice(0, 3),
+            ].filter(Boolean),
         };
     }
 }
