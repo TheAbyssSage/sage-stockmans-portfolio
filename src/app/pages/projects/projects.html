@@ -6,7 +6,7 @@
     <section class="projects-header fade-up">
         <p class="section-label">Projects</p>
         <h1 class="projects-title">
-            A timeline of things I&apos;m building as I learn.
+            A timeline of things I'm building as I learn.
         </h1>
         <p class="projects-subtitle">
             Newest at the top · real projects, small experiments, and everything in‑between.
@@ -43,7 +43,7 @@
             Timeline · newest first
         </p>
         <p class="projects-timeline-label">
-            <strong>Loads instantly. If not, refresh.</strong>
+            <strong>Loads instantly. If not, it will retry automatically.</strong>
         </p>
         <div class="projects-view-toggle">
             <button class="view-toggle-btn" [class.active]="viewMode === 'timeline'"
@@ -70,8 +70,14 @@
         {{ error }}
     </div>
 
+    <!-- NO PROJECTS (AFTER LOADING, NO ERROR) -->
+    <div *ngIf="!loading && !error && projects.length === 0" class="projects-error fade-up">
+        No projects found yet. Check back soon.
+    </div>
+
     <!-- TIMELINE VIEW -->
-    <section *ngIf="viewMode === 'timeline' && !loading && !error" class="projects-timeline fade-up">
+    <section *ngIf="viewMode === 'timeline' && !loading && !error && projects.length > 0"
+        class="projects-timeline fade-up">
         <article *ngFor="let project of projects; let i = index" class="project-node"
             [class.project-node--highlight]="i === 0">
             <div class="project-node-dot"></div>
@@ -90,34 +96,11 @@
                     {{ project.description }}
                 </p>
 
-                <!-- <div class="project-node-metadata">
-                    <div class="metadata-badge" *ngIf="project.stars > 0">
-                        <span class="badge-icon">⭐</span>
-                        <span class="badge-value">{{ project.stars }}</span>
-                    </div>
-                    <div class="metadata-badge">
-                        <span class="badge-icon">📅</span>
-                        <span class="badge-value">{{ project.lastUpdated | date: 'short' }}</span>
-                    </div>
-                    <div class="metadata-badge" *ngIf="project.size > 0">
-                        <span class="badge-icon">📦</span>
-                        <span class="badge-value">{{ project.size }} KB</span>
-                    </div>
-                </div> -->
-
                 <dl class="project-node-meta">
                     <div>
                         <dt>Type</dt>
                         <dd>{{ project.type }}</dd>
                     </div>
-                    <!-- <div>
-                        <dt>Stack</dt>
-                        <dd>{{ project.stack }}</dd>
-                    </div> -->
-                    <!-- <div class="metadata-badge" *ngIf="project.size > 0">
-                        <span class="badge-icon">📦</span>
-                        <span class="badge-value">{{ project.size }} KB</span>
-                    </div> -->
                     <div>
                         <dt>Focus</dt>
                         <dd>{{ project.focus }}</dd>
@@ -145,7 +128,7 @@
     </section>
 
     <!-- GRID VIEW -->
-    <section *ngIf="viewMode === 'grid' && !loading && !error" class="projects-grid fade-up">
+    <section *ngIf="viewMode === 'grid' && !loading && !error && projects.length > 0" class="projects-grid fade-up">
         <article *ngFor="let project of projects; let i = index" class="grid-card"
             [class.grid-card--highlight]="i === 0">
             <div class="grid-card-header">
@@ -159,8 +142,8 @@
 
             <div class="grid-card-meta">
                 <div class="meta-item">
-                    <span class="meta-label">Stack</span>
-                    <span class="meta-value">{{ project.stack }}</span>
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">{{ project.type }}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Created</span>
@@ -168,14 +151,16 @@
                 </div>
             </div>
 
-            <div class="grid-card-badges">
-                <span class="grid-badge" *ngIf="project.stars > 0">
-                    ⭐ {{ project.stars }}
-                </span>
-                <span class="grid-badge">
-                    📅 {{ project.lastUpdated | date: 'short' }}
-                </span>
-            </div>
+            <!-- If you later add stars/lastUpdated back into ProjectEntry, you can restore this
+      <div class="grid-card-badges">
+        <span class="grid-badge" *ngIf="project.stars > 0">
+          ⭐ {{ project.stars }}
+        </span>
+        <span class="grid-badge">
+          📅 {{ project.lastUpdated | date: 'short' }}
+        </span>
+      </div>
+      -->
 
             <div class="grid-card-tags demo-tags">
                 <span *ngFor="let tag of project.tags" class="demo-tag">
@@ -196,26 +181,36 @@
     </section>
 
     <!-- LIST VIEW -->
-    <section *ngIf="viewMode === 'list' && !loading && !error" class="projects-list fade-up">
+    <section *ngIf="viewMode === 'list' && !loading && !error && projects.length > 0" class="projects-list fade-up">
         <div class="list-header">
             <div class="list-col-title">Project</div>
-            <div class="list-col-stack">Stack</div>
-            <div class="list-col-meta">Stats</div>
+            <div class="list-col-stack">Type</div>
+            <div class="list-col-meta">Created</div>
             <div class="list-col-links">Links</div>
         </div>
+
         <article *ngFor="let project of projects; let i = index" class="list-row" [class.list-row--highlight]="i === 0">
             <div class="list-col-title">
                 <div class="list-title-main">{{ project.title }}</div>
                 <div class="list-title-meta">{{ project.description }}</div>
                 <span *ngIf="i === 0" class="project-node-chip list-chip">Newest</span>
             </div>
+
             <div class="list-col-stack">
-                <span class="stack-chip">{{ project.primaryLanguage }}</span>
+                <!-- using type here instead of primaryLanguage, since ProjectEntry doesn't have primaryLanguage -->
+                <span class="stack-chip">{{ project.type }}</span>
             </div>
+
             <div class="list-col-meta">
-                <span *ngIf="project.stars > 0" class="stat-badge">⭐ {{ project.stars }}</span>
-                <span class="stat-badge">{{ project.lastUpdated | date: 'MMM d' }}</span>
+                <!-- If you later add stars/lastUpdated back you can restore badges here
+        <span *ngIf="project.stars > 0" class="stat-badge">⭐ {{ project.stars }}</span>
+        <span class="stat-badge">{{ project.lastUpdated | date: 'MMM d' }}</span>
+        -->
+                <span class="stat-badge">
+                    {{ project.date | date: 'MMM d' }}
+                </span>
             </div>
+
             <div class="list-col-links">
                 <a class="link-cta" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
                     GitHub<i>↗</i>
