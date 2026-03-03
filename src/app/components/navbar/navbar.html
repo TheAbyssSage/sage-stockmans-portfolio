@@ -22,12 +22,17 @@
             <a routerLink="/projects" routerLinkActive="active">
                 Projects
             </a>
-            <a class="app-footer-link" routerLink="/experience">
+            <a routerLink="/experience" routerLinkActive="active">
                 Experience
             </a>
             <a routerLink="/contact" routerLinkActive="active">
                 Contact
             </a>
+
+            <!-- Language toggle -->
+            <button type="button" class="nav-lang-toggle" (click)="toggleLang()">
+                {{ lang === 'en' ? 'NL' : 'EN' }}
+            </button>
         </div>
 
     </div>
