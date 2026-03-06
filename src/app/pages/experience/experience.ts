@@ -1,10 +1,11 @@
 // src/app/pages/experience/experience.ts
 
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 type ExperienceTrack = 'work' | 'education' | 'ai';
+type UiLang = 'en' | 'nl';
 
 interface ExperienceEntry {
   title: string;
@@ -26,9 +27,56 @@ interface ExperienceEntry {
   templateUrl: './experience.html',
   styleUrls: ['./experience.css'],
 })
-export class ExperienceComponent {
+export class ExperienceComponent implements OnInit, OnDestroy {
   // Three columns / tracks
   tracks: ExperienceTrack[] = ['work', 'education', 'ai'];
+
+  uiLang: UiLang = 'en';
+  private readonly LANG_KEY = 'uiLang';
+  private isBrowser: boolean;
+
+  private langListener = (event: Event) => {
+    const custom = event as CustomEvent<{ lang: UiLang }>;
+    const nextLang = custom.detail?.lang;
+    if (nextLang === 'en' || nextLang === 'nl') {
+      this.uiLang = nextLang;
+    }
+  };
+
+  t = {
+    en: {
+      sectionLabel: 'Experience',
+      title: "Work, education, and how I'm learning to use AI responsibly.",
+      subtitle: 'A git-branch inspired overview of jobs, school, and extra learning.',
+      ctaText:
+        "I use what I learned in customer-facing jobs, school, and AI/agentic workflows " +
+        "to build software that's reliable, understandable, and actually pleasant to use.",
+
+      legendWork: 'Work',
+      legendEducation: 'Education',
+      legendAi: 'AI / Agentic workflows',
+
+      laneWorkTitle: 'Work',
+      laneEducationTitle: 'Education',
+      laneAiTitle: 'AI / Extra',
+    },
+    nl: {
+      sectionLabel: 'Ervaring',
+      title: 'Werk, opleiding en hoe ik leer om AI verantwoord te gebruiken.',
+      subtitle: 'Een git-branch geïnspireerd overzicht van jobs, school en extra leertrajecten.',
+      ctaText:
+        'Wat ik leerde in klantgerichte jobs, op school en in AI/agentic workflows gebruik ik ' +
+        'om software te bouwen die betrouwbaar, begrijpelijk en fijn in gebruik is.',
+
+      legendWork: 'Werk',
+      legendEducation: 'Opleiding',
+      legendAi: 'AI / Agentic workflows',
+
+      laneWorkTitle: 'Werk',
+      laneEducationTitle: 'Opleiding',
+      laneAiTitle: 'AI / Extra',
+    },
+  };
 
   // All experience entries (from LinkedIn + CV + AI classes)
   entries: ExperienceEntry[] = [
@@ -116,7 +164,7 @@ export class ExperienceComponent {
     },
     {
       title: 'Dutch - KU-Leuven',
-      organization: 'Lauven Language Institute · Leuven, Belgium',
+      organization: 'Leuven Language Institute · Leuven, Belgium',
       track: 'education',
       start: '2025-02',
       end: '2025-06',
@@ -136,7 +184,6 @@ export class ExperienceComponent {
       summary: 'Completed secondary education in Arizona.',
       tags: ['English', 'General education'],
     },
-    
 
     // AI / EXTRA
     {
@@ -166,6 +213,35 @@ export class ExperienceComponent {
       tags: ['Prompt design', 'Code review', 'Reliability'],
     },
   ];
+
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit(): void {
+    if (this.isBrowser) {
+      try {
+        const saved = localStorage.getItem(this.LANG_KEY);
+        if (saved === 'en' || saved === 'nl') {
+          this.uiLang = saved;
+        }
+      } catch {
+        this.uiLang = 'en';
+      }
+
+      window.addEventListener('ui-lang-change', this.langListener as EventListener);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isBrowser) {
+      window.removeEventListener('ui-lang-change', this.langListener as EventListener);
+    }
+  }
+
+  get current() {
+    return this.t[this.uiLang];
+  }
 
   getEntriesForTrack(track: ExperienceTrack): ExperienceEntry[] {
     return this.entries
