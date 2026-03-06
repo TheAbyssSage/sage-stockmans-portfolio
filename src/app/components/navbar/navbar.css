@@ -150,3 +150,23 @@
         transform: scaleY(1);
     }
 }
+
+.nav-lang-toggle {
+    margin-left: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    border: 1px solid rgba(200, 191, 173, 0.9);
+    background: transparent;
+    color: var(--clay);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-lang-toggle:hover {
+    background: var(--storm);
+    color: var(--stone);
+    border-color: var(--storm);
+}

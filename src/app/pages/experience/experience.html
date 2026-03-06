@@ -4,50 +4,42 @@
 
     <!-- HEADER -->
     <section class="experience-header fade-up">
-        <p class="section-label">Experience</p>
+        <p class="section-label">{{ current.sectionLabel }}</p>
         <h1 class="experience-title">
-            Work, education, and how I&apos;m learning to use AI responsibly.
+            {{ current.title }}
         </h1>
         <p class="experience-subtitle">
-            A git-branch inspired overview of jobs, school, and extra learning.
+            {{ current.subtitle }}
         </p>
 
-    <!-- CALL TO ACTION -->
+        <!-- CALL TO ACTION -->
         <p>
-            I use what I learned in customer-facing jobs, school, and AI/agentic workflows
-            to build software that&apos;s reliable, understandable, and actually pleasant to use.
+            {{ current.ctaText }}
         </p>
-        <!-- <div class="experience-footer-links">
-            <a class="link-cta" routerLink="/projects">
-                <span>See projects</span><i>↗</i>
-            </a>
-            <a class="link-cta" routerLink="/contact">
-                <span>Get in touch</span><i>→</i>
-            </a>
-        </div> -->
     </section>
 
     <!-- LEGEND -->
     <section class="experience-legend fade-up">
         <div class="legend-item">
             <span class="legend-dot legend-dot--work"></span>
-            <span>Work</span>
+            <span>{{ current.legendWork }}</span>
         </div>
         <div class="legend-item">
             <span class="legend-dot legend-dot--education"></span>
-            <span>Education</span>
+            <span>{{ current.legendEducation }}</span>
         </div>
         <div class="legend-item">
             <span class="legend-dot legend-dot--ai"></span>
-            <span>AI / Agentic workflows</span>
+            <span>{{ current.legendAi }}</span>
         </div>
     </section>
 
     <!-- GIT-BRANCH STYLE GRID -->
     <section class="experience-grid fade-up">
-        <!-- Vertical lanes -->
+
+        <!-- Work lane -->
         <div class="experience-lane experience-lane--work">
-            <h2>Work</h2>
+            <h2>{{ current.laneWorkTitle }}</h2>
             <div class="lane-line"></div>
             <div class="lane-entries">
                 <article class="exp-card exp-card--work"
@@ -73,15 +65,18 @@
                             {{ entry.details }}
                         </p>
                         <div class="exp-tags demo-tags">
-                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">
+                                {{ tag }}
+                            </span>
                         </div>
                     </div>
                 </article>
             </div>
         </div>
 
+        <!-- Education lane -->
         <div class="experience-lane experience-lane--education">
-            <h2>Education</h2>
+            <h2>{{ current.laneEducationTitle }}</h2>
             <div class="lane-line"></div>
             <div class="lane-entries">
                 <article class="exp-card exp-card--education"
@@ -107,15 +102,18 @@
                             {{ entry.details }}
                         </p>
                         <div class="exp-tags demo-tags">
-                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">
+                                {{ tag }}
+                            </span>
                         </div>
                     </div>
                 </article>
             </div>
         </div>
 
+        <!-- AI lane -->
         <div class="experience-lane experience-lane--ai">
-            <h2>AI / Extra</h2>
+            <h2>{{ current.laneAiTitle }}</h2>
             <div class="lane-line"></div>
             <div class="lane-entries">
                 <article class="exp-card exp-card--ai" *ngFor="let entry of getEntriesForTrack('ai'); let i = index">
@@ -140,28 +138,15 @@
                             {{ entry.details }}
                         </p>
                         <div class="exp-tags demo-tags">
-                            <span class="demo-tag" *ngFor="let tag of entry.tags">{{ tag }}</span>
+                            <span class="demo-tag" *ngFor="let tag of entry.tags">
+                                {{ tag }}
+                            </span>
                         </div>
                     </div>
                 </article>
             </div>
         </div>
-    </section>
 
-    <!-- CALL TO ACTION -->
-    <!-- <section class="experience-footer fade-up">
-        <p>
-            I use what I learned in customer-facing jobs, school, and AI/agentic workflows
-            to build software that&apos;s reliable, understandable, and actually pleasant to use.
-        </p>
-        <div class="experience-footer-links">
-            <a class="link-cta" routerLink="/projects">
-                <span>See projects</span><i>↗</i>
-            </a>
-            <a class="link-cta" routerLink="/contact">
-                <span>Get in touch</span><i>→</i>
-            </a>
-        </div>
-    </section> -->
+    </section>
 
 </section>

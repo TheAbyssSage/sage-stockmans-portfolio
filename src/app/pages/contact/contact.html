@@ -4,34 +4,31 @@
 
     <!-- HEADER -->
     <section class="contact-header fade-up">
-        <p class="section-label">Contact</p>
+        <p class="section-label">{{ current.sectionLabel }}</p>
         <h1 class="contact-title">
-            Let&apos;s talk about code, projects, and what we can build.
+            {{ current.title }}
         </h1>
         <p class="contact-subtitle">
-            Open to internships, junior roles, collaborations, and project feedback.
+            {{ current.subtitle }}
         </p>
     </section>
 
     <!-- MAIN TEXT -->
     <section class="contact-main fade-up">
         <p>
-            If you&apos;re looking for someone who enjoys learning quickly, staying calm
-            under pressure, and taking responsibility for a piece of the stack,
-            I&apos;d be happy to hear from you.
+            {{ current.mainP1 }}
         </p>
         <p>
-            Email is usually the best way to reach me, but you can also connect on
-            LinkedIn or explore my GitHub to see what I&apos;ve been building.
+            {{ current.mainP2 }}
         </p>
     </section>
 
     <!-- CONTACT OPTIONS -->
     <section class="contact-options fade-up">
         <div class="contact-card">
-            <h2>Email</h2>
+            <h2>{{ current.emailTitle }}</h2>
             <p>
-                For opportunities, questions about my work, or longer messages.
+                {{ current.emailText }}
             </p>
             <a class="link-cta" href="mailto:sage.stockmans@pm.me">
                 <span>sage.stockmans@pm.me</span><i>✉</i>
@@ -39,51 +36,49 @@
         </div>
 
         <div class="contact-card">
-            <h2>LinkedIn</h2>
+            <h2>{{ current.linkedInTitle }}</h2>
             <p>
-                Connect professionally, view my experience, or send a quick message.
+                {{ current.linkedInText }}
             </p>
             <a class="link-cta" href="https://www.linkedin.com/in/sage-stockmans-91090038b" target="_blank"
                 rel="noopener noreferrer">
-                <span>View profile</span><i>↗</i>
+                <span>{{ current.linkedInCta }}</span><i>↗</i>
             </a>
         </div>
 
         <div class="contact-card">
-            <h2>GitHub</h2>
+            <h2>{{ current.githubTitle }}</h2>
             <p>
-                Browse my code, experiments, and projects as I learn and ship new things.
+                {{ current.githubText }}
             </p>
             <a class="link-cta" href="https://github.com/TheAbyssSage" target="_blank" rel="noopener noreferrer">
-                <span>Visit GitHub</span><i>↗</i>
+                <span>{{ current.githubCta }}</span><i>↗</i>
             </a>
         </div>
     </section>
 
+    <!-- CV DOWNLOAD -->
     <div class="contact-card text-center fade-up">
-        <h2>Download CV</h2>
+        <h2>{{ current.cvTitle }}</h2>
         <p>
-            Download a PDF version of my CV for offline review or sharing.
+            {{ current.cvText }}
         </p>
         <a class="justify-content-center align-middle" href="sage-stockmans-cv.pdf" download="Sage-Stockmans-CV.pdf">
             <button class="learn-more">
                 <span class="circle" aria-hidden="true">
                     <span class="icon arrow"></span>
                 </span>
-                <span class="button-text">Download CV</span>
+                <span class="button-text">{{ current.cvButton }}</span>
             </button>
         </a>
     </div>
 
-    <br><br>
+    <br /><br />
 
     <!-- NOTE -->
     <section class="contact-note fade-up">
         <p>
-            I&apos;m currently studying Full Stack Development at SyntraPXL, so I&apos;m
-            especially interested in roles and projects where I can grow as a PHP /
-            Laravel &amp; Angular developer, introduce new tools, and help improve
-            reliability and developer experience.
+            {{ current.noteText }}
         </p>
     </section>
 

@@ -1,40 +1,47 @@
-<!-- src/app/pages/home/home.component.html -->
-
 <section class="home-page">
 
     <!-- HEADER -->
     <header class="home-header fade-up">
         <div>
-            <p class="header-label">Portfolio · Full Stack Development</p>
+            <p class="header-label">
+                {{ current.headerLabel }}
+            </p>
             <h1>
-                > Sage <em>Stockmans<span class="cursor">_</span></em>
+                &gt; Sage
+                <em>
+                    Stockmans<span class="cursor">_</span>
+                </em>
             </h1>
         </div>
         <div class="header-meta">
-            PHP · Laravel · Angular<br>
-            Arizona &amp; Belgium<br>
-            Full Stack Developer in training
+            {{ current.headerMetaLine1 }}<br />
+            {{ current.headerMetaLine2 }}<br />
+            {{ current.headerMetaLine3 }}
         </div>
     </header>
 
     <!-- INTRO -->
     <section class="home-intro fade-up">
-        <!-- <p class="intro-line">
-            &gt; Sage Stockmans<span class="cursor">_</span>
-        </p> -->
         <p class="intro-text">
-            I build full stack web applications with PHP, Laravel, Angular, and MySQL —
-            with a focus on clear structure, responsive UI, and reliable APIs. I enjoy
-            taking an idea from scratch to a working product you can click and use.
+            {{ current.introText }}
         </p>
 
         <div class="intro-tags demo-tags">
-            <span class="demo-tag intro-tag--backend">Backend · PHP - Laravel</span>
-            <span class="demo-tag intro-tag--frontend">Frontend · Angular · JS</span>
-            <span class="demo-tag intro-tag--data">Data · MySQL - DB design</span>
-            <span class="demo-tag intro-tag--workflow">Workflow · Agile &amp; Scrum</span>
-            <span class="demo-tag intro-tag--aiworkflow">AI/Agentic workflows · responsible use</span>
-
+            <span class="demo-tag intro-tag--backend">
+                Backend · PHP - Laravel
+            </span>
+            <span class="demo-tag intro-tag--frontend">
+                Frontend · Angular · JS
+            </span>
+            <span class="demo-tag intro-tag--data">
+                Data · MySQL - DB design
+            </span>
+            <span class="demo-tag intro-tag--workflow">
+                Workflow · Agile &amp; Scrum
+            </span>
+            <span class="demo-tag intro-tag--aiworkflow">
+                AI/Agentic workflows · responsible use
+            </span>
         </div>
     </section>
 
@@ -45,42 +52,49 @@
         <div class="demo-card">
             <div class="demo-left">
                 <h2>
-                    Building real projects<br />
-                    while I learn.
+                    {{ current.featuredTitle1 }}<br />
+                    {{ current.featuredTitle2 }}
                 </h2>
                 <p>
-                    From small JavaScript experiments to full PHP &amp; Angular apps,
-                    I focus on projects that solve real problems, teach me new patterns,
-                    and are solid enough to deploy and maintain.
+                    {{ current.featuredText }}
                 </p>
                 <div class="demo-tags">
-                    <span class="demo-tag">Full stack</span>
-                    <span class="demo-tag">APIs</span>
-                    <span class="demo-tag">Laravel &amp; PHP</span>
-                    <span class="demo-tag">Angular</span>
+                    <span class="demo-tag" *ngFor="let tag of current.featuredTags">
+                        {{ tag }}
+                    </span>
                 </div>
                 <div class="home-links" style="cursor: pointer;">
                     <a class="link-cta" routerLink="/projects">
-                        <span>View projects</span><i>↗</i>
+                        <span>{{ current.ctaProjects }}</span><i>↗</i>
                     </a>
                     <a class="link-cta" routerLink="/about">
-                        <span>About me</span><i>→</i>
+                        <span>{{ current.ctaAbout }}</span><i>→</i>
                     </a>
                 </div>
             </div>
 
             <div class="demo-right">
                 <div class="demo-stat">
-                    <span class="demo-stat-num">{{ projectCount }}{{ projectCount > 0 ? '+' : '' }}</span>
-                    <span class="demo-stat-label">Projects &amp; experiments</span>
+                    <span class="demo-stat-num">
+                        {{ projectCount }}{{ projectCount > 0 ? '+' : '' }}
+                    </span>
+                    <span class="demo-stat-label">
+                        {{ current.statProjectsLabel }}
+                    </span>
                 </div>
                 <div class="demo-stat">
-                    <span class="demo-stat-num">{{ languages.length }}</span>
-                    <span class="demo-stat-label">Languages in use{{ languages.length !== 1 ? 's' : '' }}</span>
+                    <span class="demo-stat-num">
+                        {{ languages.length }}
+                    </span>
+                    <span class="demo-stat-label">
+                        {{ current.statLanguagesLabel(languages.length) }}
+                    </span>
                 </div>
                 <div class="demo-stat">
                     <span class="demo-stat-num">∞</span>
-                    <span class="demo-stat-label">Bugs debugged &amp; lessons learned</span>
+                    <span class="demo-stat-label">
+                        Bugs debugged &amp; lessons learned
+                    </span>
                 </div>
             </div>
         </div>
@@ -88,16 +102,16 @@
 
     <!-- CONTACT PREVIEW -->
     <section class="home-contact fade-up">
-        <p class="section-label">Get in touch</p>
+        <p class="section-label">
+            {{ current.contactSectionLabel }}
+        </p>
         <p class="home-contact-text">
-            Open to internships, junior roles, and collaborations. If you&apos;re
-            looking for someone who enjoys learning fast and shipping working code,
-            let&apos;s talk.
+            {{ current.contactText }}
         </p>
 
         <div class="home-contact-links">
             <a class="link-cta" href="mailto:sage.stockmans@pm.me">
-                <span>Email</span><i>✉</i>
+                <span>{{ current.contactEmail }}</span><i>✉</i>
             </a>
             <a class="link-cta" href="https://github.com/TheAbyssSage" target="_blank" rel="noopener noreferrer">
                 <span>GitHub</span><i>↗</i>
