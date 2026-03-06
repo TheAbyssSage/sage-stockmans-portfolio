@@ -1,3 +1,5 @@
+// src/app/pages/projects/projects.service.ts
+
 import { Injectable, PLATFORM_ID, Inject, TransferState, makeStateKey } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, shareReplay, catchError, tap } from 'rxjs/operators';
@@ -54,7 +56,7 @@ export class ProjectsService {
             return this.projects$;
         }
 
-        const url = '/api/github-projects'; // Netlify function
+        const url = '/api/github-projects'; // Netlify function endpoint
 
         this.projects$ = this.http.get<GithubRepo[]>(url).pipe(
             map(repos => {
