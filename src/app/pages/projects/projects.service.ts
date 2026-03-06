@@ -1,5 +1,3 @@
-// src/app/pages/projects/projects.service.ts
-
 import { Injectable, PLATFORM_ID, Inject, TransferState, makeStateKey } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, shareReplay, catchError, tap } from 'rxjs/operators';
@@ -35,7 +33,6 @@ const PROJECTS_KEY = makeStateKey<ProjectEntry[]>('projects');
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
-    private readonly username = 'TheAbyssSage';
     private projects$?: Observable<ProjectEntry[]>;
 
     constructor(
@@ -57,7 +54,7 @@ export class ProjectsService {
             return this.projects$;
         }
 
-        const url = `https://api.github.com/users/${this.username}/repos?sort=created&per_page=50`;
+        const url = '/api/github-projects'; // Netlify function
 
         this.projects$ = this.http.get<GithubRepo[]>(url).pipe(
             map(repos => {
@@ -68,7 +65,6 @@ export class ProjectsService {
                 );
                 return basicProjects;
             }),
-            // Server: store result in TransferState so browser can pick it up
             tap(projects => {
                 if (!isPlatformBrowser(this.platformId)) {
                     this.transferState.set(PROJECTS_KEY, projects);

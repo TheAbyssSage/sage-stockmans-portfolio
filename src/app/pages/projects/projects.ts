@@ -1,5 +1,3 @@
-// src/app/pages/projects/projects.ts
-
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, DatePipe, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';

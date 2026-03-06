@@ -1,7 +1,7 @@
 // src/app/pages/home/home.ts
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 type UiLang = 'en' | 'nl';
@@ -19,6 +19,9 @@ export class Home implements OnInit, OnDestroy {
 
   uiLang: UiLang = 'en';
   private readonly LANG_KEY = 'uiLang';
+  private isBrowser: boolean;
+
+  // use a bound function so we can add/remove it cleanly
   private langListener = (event: Event) => {
     const custom = event as CustomEvent<{ lang: UiLang }>;
     const nextLang = custom.detail?.lang;
@@ -78,27 +81,34 @@ export class Home implements OnInit, OnDestroy {
       contactText:
         'Ik sta open voor stages, junior functies en samenwerkingen. ' +
         'Als je iemand zoekt die snel leert en graag werkende code oplevert, laat gerust iets weten.',
-      contactEmail: 'E-mail',
+      contactEmail: 'E‑mail',
     },
   };
 
-  ngOnInit(): void {
-    // Initial language from storage
-    try {
-      const saved = localStorage.getItem(this.LANG_KEY);
-      if (saved === 'en' || saved === 'nl') {
-        this.uiLang = saved;
-      }
-    } catch {
-      this.uiLang = 'en';
-    }
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
-    // Listen for changes from navbar
-    window.addEventListener('ui-lang-change', this.langListener as EventListener);
+  ngOnInit(): void {
+    // read language from storage only in the browser
+    if (this.isBrowser) {
+      try {
+        const saved = localStorage.getItem(this.LANG_KEY);
+        if (saved === 'en' || saved === 'nl') {
+          this.uiLang = saved;
+        }
+      } catch {
+        this.uiLang = 'en';
+      }
+
+      window.addEventListener('ui-lang-change', this.langListener as EventListener);
+    }
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('ui-lang-change', this.langListener as EventListener);
+    if (this.isBrowser) {
+      window.removeEventListener('ui-lang-change', this.langListener as EventListener);
+    }
   }
 
   get current() {
