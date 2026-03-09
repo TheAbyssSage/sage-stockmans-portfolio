@@ -1,9 +1,10 @@
+// src/app/pages/about/about.component.ts
+
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 type UiLang = 'en' | 'nl';
-
 
 @Component({
   selector: 'app-about',
@@ -15,6 +16,7 @@ type UiLang = 'en' | 'nl';
 export class AboutComponent implements OnInit, OnDestroy {
   uiLang: UiLang = 'en';
   private readonly LANG_KEY = 'uiLang';
+  private isBrowser: boolean;
 
   private langListener = (event: Event) => {
     const custom = event as CustomEvent<{ lang: UiLang }>;
@@ -190,21 +192,29 @@ export class AboutComponent implements OnInit, OnDestroy {
     },
   };
 
-  ngOnInit(): void {
-    try {
-      const saved = localStorage.getItem(this.LANG_KEY);
-      if (saved === 'en' || saved === 'nl') {
-        this.uiLang = saved;
-      }
-    } catch {
-      this.uiLang = 'en';
-    }
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
-    window.addEventListener('ui-lang-change', this.langListener as EventListener);
+  ngOnInit(): void {
+    if (this.isBrowser) {
+      try {
+        const saved = localStorage.getItem(this.LANG_KEY);
+        if (saved === 'en' || saved === 'nl') {
+          this.uiLang = saved;
+        }
+      } catch {
+        this.uiLang = 'en';
+      }
+
+      window.addEventListener('ui-lang-change', this.langListener as EventListener);
+    }
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('ui-lang-change', this.langListener as EventListener);
+    if (this.isBrowser) {
+      window.removeEventListener('ui-lang-change', this.langListener as EventListener);
+    }
   }
 
   get current() {

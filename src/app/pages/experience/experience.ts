@@ -12,8 +12,8 @@ interface ExperienceEntry {
   organization: string;
   location?: string;
   track: ExperienceTrack;
-  start: string;   // ISO or "YYYY-MM" for ordering
-  end?: string;    // undefined = ongoing
+  start: string;
+  end?: string;
   periodLabel: string;
   summary: string;
   details?: string;
@@ -28,7 +28,6 @@ interface ExperienceEntry {
   styleUrls: ['./experience.css'],
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
-  // Three columns / tracks
   tracks: ExperienceTrack[] = ['work', 'education', 'ai'];
 
   uiLang: UiLang = 'en';

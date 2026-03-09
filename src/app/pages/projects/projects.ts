@@ -135,12 +135,19 @@ export class ProjectsComponent implements OnInit {
         this.projects = projects;
         this.loading = false;
 
-        if (projects.length === 0 && this.autoRefreshAttempts < this.maxAutoRefreshAttempts) {
+        if (
+          this.isBrowser &&
+          projects.length === 0 &&
+          this.autoRefreshAttempts < this.maxAutoRefreshAttempts
+        ) {
           this.autoRefreshAttempts++;
           setTimeout(() => {
             this.loadProjects(true);
           }, this.autoRefreshDelayMs);
-        } else if (projects.length === 0 && this.autoRefreshAttempts >= this.maxAutoRefreshAttempts) {
+        } else if (
+          projects.length === 0 &&
+          this.autoRefreshAttempts >= this.maxAutoRefreshAttempts
+        ) {
           this.error = 'No projects found on GitHub right now.';
         }
       },
