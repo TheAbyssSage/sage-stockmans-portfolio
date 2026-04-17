@@ -7,7 +7,14 @@ const GITHUB_API_URL =
 
 export const handler: Handler = async (event, context) => {
   try {
+    console.log('GitHub projects function called with event:', {
+      httpMethod: event.httpMethod,
+      path: event.path,
+      queryStringParameters: event.queryStringParameters,
+    });
+
     const token = process.env.GITHUB_TOKEN;
+    console.log('Using GitHub token:', token ? 'Yes' : 'No');
 
     const headers: Record<string, string> = {
       'User-Agent': 'netlify-function',
@@ -18,27 +25,39 @@ export const handler: Handler = async (event, context) => {
       headers.Authorization = `Bearer ${token}`;
     }
 
+    console.log('Making request to GitHub API:', GITHUB_API_URL);
     const response = await fetch(GITHUB_API_URL, {
       method: 'GET',
       headers,
     });
 
+    console.log('GitHub API response status:', response.status);
+
     if (!response.ok) {
+      console.error('GitHub API error:', response.status, response.statusText);
+      const errorBody = await response.text();
+      console.error('GitHub API error body:', errorBody);
+      
+      // Return empty array instead of error to allow fallback to work
       return {
-        statusCode: response.status,
-        body: JSON.stringify({
-          error: 'GitHub API error',
-          status: response.status,
-          statusText: response.statusText,
-        }),
+        statusCode: 200,
+        body: JSON.stringify([]),
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=300',
+        },
       };
     }
 
     const repos = await response.json();
+    console.log('GitHub API returned repos count:', Array.isArray(repos) ? repos.length : 0);
 
+    // Validate that we have an array
+    const validRepos = Array.isArray(repos) ? repos : [];
+    
     return {
       statusCode: 200,
-      body: JSON.stringify(repos),
+      body: JSON.stringify(validRepos),
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=300',
@@ -46,9 +65,14 @@ export const handler: Handler = async (event, context) => {
     };
   } catch (err) {
     console.error('GitHub projects function error:', err);
+    // Return empty array instead of error to allow fallback to work
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      statusCode: 200,
+      body: JSON.stringify([]),
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=300',
+      },
     };
   }
 };

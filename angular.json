@@ -67,7 +67,8 @@
               "buildTarget": "sage-stockmans:build:production"
             },
             "development": {
-              "buildTarget": "sage-stockmans:build:development"
+              "buildTarget": "sage-stockmans:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

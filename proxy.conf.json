@@ -1,0 +1,11 @@
+{
+  "/api/github-projects": {
+    "target": "http://localhost:9999",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api/github-projects": "/.netlify/functions/github-projects"
+    }
+  }
+}

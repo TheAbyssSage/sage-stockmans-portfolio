@@ -2,6 +2,9 @@
 
 <section class="projects-page">
 
+    <!-- DEBUG COMPONENT -->
+    <app-debug-functions></app-debug-functions>
+
     <!-- HEADER -->
     <section class="projects-header fade-up">
         <p class="section-label">{{ current.sectionLabel }}</p>
@@ -41,6 +44,10 @@
         <p class="projects-timeline-label">
             <strong>{{ current.helperText }}</strong>
         </p>
+        <button class="btn btn-primary" (click)="onManualReload()" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-2"></span>
+            {{ current.reloadCta }}
+        </button>
         <div class="projects-view-toggle">
             <button class="view-toggle-btn" [class.active]="viewMode === 'timeline'"
                 (click)="toggleViewMode('timeline')" aria-label="Timeline view">

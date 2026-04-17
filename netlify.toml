@@ -1,0 +1,18 @@
+[build]
+  functions = "netlify/functions"
+
+[dev]
+  command = "ng serve"
+  port = 4200
+  functions = "netlify/functions"
+  functionsPort = 9999
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/github-projects"
+  to = "/.netlify/functions/github-projects"
+  status = 200

@@ -1,20 +1,22 @@
 // src/app/pages/projects/projects.ts
 
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, DatePipe, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ProjectsService, ProjectEntry } from '../../pages/projects/projects.service';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
+import { ProjectsService, ProjectEntry } from './projects.service';
+import { DebugFunctionsComponent } from './debug.component';
 
 type UiLang = 'en' | 'nl';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [RouterModule, CommonModule, DatePipe],
+  imports: [RouterModule, CommonModule, DatePipe, DebugFunctionsComponent],
   templateUrl: './projects.html',
   styleUrls: ['./projects.css'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   projects: ProjectEntry[] = [];
   loading = true;
   error = '';
@@ -24,15 +26,21 @@ export class ProjectsComponent implements OnInit {
   private readonly maxAutoRefreshAttempts = 3;
   private readonly autoRefreshDelayMs = 2000;
   private readonly isBrowser: boolean;
+  private routerSubscription: Subscription | null = null;
 
   uiLang: UiLang = 'en';
   private readonly LANG_KEY = 'uiLang';
 
+  // NEW: track whether we've attempted a load at least once
+  hasLoadedOnce = false;
+
+  // t object unchanged...
   t = {
     en: {
       sectionLabel: 'Projects',
       title: "A timeline of things I'm building as I learn.",
-      subtitle: 'Newest at the top · real projects, small experiments, and everything in‑between.',
+      subtitle:
+        'Newest at the top · real projects, small experiments, and everything in‑between.',
 
       introTitle: 'How I use projects to learn',
       introP1:
@@ -45,13 +53,14 @@ export class ProjectsComponent implements OnInit {
       introTags: ['Full stack', 'APIs', 'UI & UX', 'Learning log'],
 
       timelineLabel: 'Timeline · newest first',
-      helperText: 'Loads instantly. If not, it will retry automatically.',
+      helperText: 'Loads instantly. If not, you can reload GitHub projects below.',
       viewTimeline: 'Timeline',
       viewGrid: 'Grid',
       viewList: 'List',
 
       loadingText: 'Loading projects from GitHub…',
       emptyText: 'No projects found yet. Check back soon.',
+      reloadCta: 'Load GitHub repositories',   // NEW label
       newestChip: 'Newest',
       typeLabel: 'Type',
       focusLabel: 'Focus',
@@ -83,13 +92,14 @@ export class ProjectsComponent implements OnInit {
       introTags: ['Full stack', 'APIs', 'UI & UX', 'Learning log'],
 
       timelineLabel: 'Tijdlijn · nieuwste eerst',
-      helperText: 'Laadt meteen. Zo niet, dan probeert de pagina het automatisch opnieuw.',
+      helperText: 'Laadt meteen. Zo niet, dan kun je hieronder GitHub-projecten opnieuw laden.',
       viewTimeline: 'Tijdlijn',
       viewGrid: 'Raster',
       viewList: 'Lijst',
 
       loadingText: 'Projecten laden van GitHub…',
       emptyText: 'Nog geen projecten gevonden. Kom later nog eens terug.',
+      reloadCta: 'GitHub‑repositories laden',   // NEW label
       newestChip: 'Nieuwste',
       typeLabel: 'Type',
       focusLabel: 'Focus',
@@ -108,6 +118,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectsService: ProjectsService,
+    private router: Router,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -118,6 +129,17 @@ export class ProjectsComponent implements OnInit {
     this.loadViewMode();
     this.loadProjects();
     this.setupLangListener();
+
+    if (this.isBrowser) {
+      this.routerSubscription = this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe((event: any) => {
+          if (event.url === '/projects') {
+            this.resetAutoRefresh();
+            this.loadProjects();
+          }
+        });
+    }
   }
 
   private loadProjects(isRefresh = false): void {
@@ -132,6 +154,7 @@ export class ProjectsComponent implements OnInit {
 
     source$.subscribe({
       next: projects => {
+        this.hasLoadedOnce = true;
         this.projects = projects;
         this.loading = false;
 
@@ -151,35 +174,46 @@ export class ProjectsComponent implements OnInit {
           this.error = 'No projects found on GitHub right now.';
         }
       },
-      error: () => {
-        this.error = 'Could not load projects from GitHub.';
+      error: (err) => {
+        this.hasLoadedOnce = true;
+        console.error('Error loading projects:', err);
+        this.error = 'Could not load projects from GitHub. Please try again later.';
         this.loading = false;
       },
     });
   }
 
+  private resetAutoRefresh(): void {
+    this.autoRefreshAttempts = 0;
+    this.error = '';
+  }
+
+  // NEW: handler for the “Load GitHub repositories” button
+  onManualReload(): void {
+    this.resetAutoRefresh();
+    this.loadProjects(true);
+  }
+
   toggleViewMode(mode: 'timeline' | 'grid' | 'list'): void {
     this.viewMode = mode;
-
     if (this.isBrowser) {
       try {
         localStorage.setItem('projectsViewMode', mode);
       } catch {
-        // ignore storage errors
+        // ignore
       }
     }
   }
 
   private loadViewMode(): void {
     if (!this.isBrowser) return;
-
     try {
       const saved = localStorage.getItem('projectsViewMode');
       if (saved === 'timeline' || saved === 'grid' || saved === 'list') {
         this.viewMode = saved;
       }
     } catch {
-      // ignore storage errors
+      // ignore
     }
   }
 
@@ -200,7 +234,6 @@ export class ProjectsComponent implements OnInit {
 
   private setupLangListener(): void {
     if (!this.isBrowser) return;
-
     window.addEventListener('ui-lang-change', this.onLangChange as EventListener);
   }
 
@@ -214,5 +247,14 @@ export class ProjectsComponent implements OnInit {
 
   get current() {
     return this.t[this.uiLang];
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+    if (this.isBrowser) {
+      window.removeEventListener('ui-lang-change', this.onLangChange as EventListener);
+    }
   }
 }
