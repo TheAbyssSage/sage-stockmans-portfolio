@@ -16,13 +16,10 @@ type UiLang = 'en' | 'nl';
 })
 export class ProjectsComponent implements OnInit {
   projects: ProjectEntry[] = [];
-  loading = true;
+  loading = false;
   error = '';
   viewMode: 'timeline' | 'grid' | 'list' = 'timeline';
 
-  private autoRefreshAttempts = 0;
-  private readonly maxAutoRefreshAttempts = 3;
-  private readonly autoRefreshDelayMs = 2000;
   private readonly isBrowser: boolean;
 
   uiLang: UiLang = 'en';
@@ -45,13 +42,13 @@ export class ProjectsComponent implements OnInit {
       introTags: ['Full stack', 'APIs', 'UI & UX', 'Learning log'],
 
       timelineLabel: 'Timeline · newest first',
-      helperText: 'Loads instantly. If not, it will retry automatically.',
+      helperText: 'Loads instantly.',
       viewTimeline: 'Timeline',
       viewGrid: 'Grid',
       viewList: 'List',
 
-      loadingText: 'Loading projects from GitHub…',
-      emptyText: 'No projects found yet. Check back soon.',
+      loadingText: 'Loading projects…',
+      emptyText: 'No projects found yet.',
       newestChip: 'Newest',
       typeLabel: 'Type',
       focusLabel: 'Focus',
@@ -83,13 +80,13 @@ export class ProjectsComponent implements OnInit {
       introTags: ['Full stack', 'APIs', 'UI & UX', 'Learning log'],
 
       timelineLabel: 'Tijdlijn · nieuwste eerst',
-      helperText: 'Laadt meteen. Zo niet, dan probeert de pagina het automatisch opnieuw.',
+      helperText: 'Laadt meteen.',
       viewTimeline: 'Tijdlijn',
       viewGrid: 'Raster',
       viewList: 'Lijst',
 
-      loadingText: 'Projecten laden van GitHub…',
-      emptyText: 'Nog geen projecten gevonden. Kom later nog eens terug.',
+      loadingText: 'Projecten laden…',
+      emptyText: 'Nog geen projecten gevonden.',
       newestChip: 'Nieuwste',
       typeLabel: 'Type',
       focusLabel: 'Focus',
@@ -120,39 +117,17 @@ export class ProjectsComponent implements OnInit {
     this.setupLangListener();
   }
 
-  private loadProjects(isRefresh = false): void {
+  private loadProjects(): void {
     this.loading = true;
-    if (!isRefresh) {
-      this.error = '';
-    }
+    this.error = '';
 
-    const source$ = isRefresh
-      ? this.projectsService.refreshProjects()
-      : this.projectsService.getProjects();
-
-    source$.subscribe({
+    this.projectsService.getProjects().subscribe({
       next: projects => {
         this.projects = projects;
         this.loading = false;
-
-        if (
-          this.isBrowser &&
-          projects.length === 0 &&
-          this.autoRefreshAttempts < this.maxAutoRefreshAttempts
-        ) {
-          this.autoRefreshAttempts++;
-          setTimeout(() => {
-            this.loadProjects(true);
-          }, this.autoRefreshDelayMs);
-        } else if (
-          projects.length === 0 &&
-          this.autoRefreshAttempts >= this.maxAutoRefreshAttempts
-        ) {
-          this.error = 'No projects found on GitHub right now.';
-        }
       },
       error: () => {
-        this.error = 'Could not load projects from GitHub.';
+        this.error = 'Could not load projects.';
         this.loading = false;
       },
     });
