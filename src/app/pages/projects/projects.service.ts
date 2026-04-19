@@ -38,8 +38,6 @@ export class ProjectsService {
             type: 'Educational Platform',
             stack: 'Laravel, PHP, MySQL, Bootstrap, Stripe, Plug&Pay API',
             focus: 'Full Stack, Payment Processing, API Integration',
-            githubUrl: '#',
-            liveUrl: '#',
             tags: ['Laravel', 'PHP', 'Education', 'Payments', 'API']
         },
         // Verhuisfirma Uyttendaele Website
@@ -50,21 +48,8 @@ export class ProjectsService {
             type: 'Business Website',
             stack: 'Laravel, PHP, MySQL, Bootstrap',
             focus: 'Business, Forms, Accessibility',
-            githubUrl: '#',
             liveUrl: 'https://verhuizingen-uyttendaele.be/',
             tags: ['Laravel', 'PHP', 'Business', 'Forms']
-        },
-        // ISS Pee Telemetry Dashboard
-        {
-            title: 'ISS Pee Telemetry Dashboard',
-            description: 'A PHP-based web application for monitoring the International Space Station\'s waste water tank status in real-time.',
-            date: '2026-02-13',
-            type: 'Dashboard',
-            stack: 'PHP, Bootstrap',
-            focus: 'API Integration, Reliability, Error Handling',
-            githubUrl: 'https://github.com/TheAbyssSage/iss-piss',
-            liveUrl: '#',
-            tags: ['PHP', 'API', 'Dashboard', 'Reliability']
         },
         // Hex & Halo Certificate Generator
         {
@@ -75,19 +60,21 @@ export class ProjectsService {
             stack: 'PHP, Dompdf, Stripe API, QR Code Library',
             focus: 'PDF Generation, Payment Processing, E-commerce',
             githubUrl: 'https://github.com/TheAbyssSage/halo',
+            liveUrl: 'https://productionserver.be/Halo-Services/',
             tags: ['PHP', 'E-commerce', 'PDF', 'Stripe']
         },
-        // Project without GitHub reference
+        // ISS Pee Telemetry Dashboard
         {
-            title: 'Internal Company Dashboard',
-            description: 'A custom internal dashboard built for a local business to track inventory and sales metrics.',
-            date: '2026-03-20',
-            type: 'Internal Tool',
-            stack: 'React, Node.js, MongoDB',
-            focus: 'Data Visualization, Internal Tools',
-            liveUrl: '#',
-            tags: ['React', 'Node.js', 'MongoDB', 'Dashboard']
-        }
+            title: 'ISS Pee Telemetry Dashboard',
+            description: 'A PHP-based web application for monitoring the International Space Station\'s waste water tank status in real-time.',
+            date: '2026-02-13',
+            type: 'Dashboard',
+            stack: 'PHP, Bootstrap',
+            focus: 'API Integration, Reliability, Error Handling',
+            githubUrl: 'https://github.com/TheAbyssSage/iss-piss',
+            // liveUrl: '#',
+            tags: ['PHP', 'API', 'Dashboard', 'Reliability']
+        },
     ];
 
     getProjects(): Observable<ProjectEntry[]> {
