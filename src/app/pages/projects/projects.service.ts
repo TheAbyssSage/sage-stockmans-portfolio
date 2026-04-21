@@ -18,18 +18,6 @@ export interface ProjectEntry {
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
     private projects: ProjectEntry[] = [
-        // Portfolio Project
-        {
-            title: 'Sage Stockmans Portfolio',
-            description: "My new portfolio! You're probably viewing it right now. Angular + custom Petrichor theme.",
-            date: '2026-03-09',
-            type: 'Portfolio',
-            stack: 'Angular, TypeScript, HTML, CSS',
-            focus: 'Frontend, UI/UX, SSR',
-            githubUrl: 'https://github.com/TheAbyssSage/sage-stockmans-portfolio',
-            liveUrl: 'https://sage-stockmans.netlify.app/',
-            tags: ['Angular', 'TypeScript', 'Portfolio', 'SSR']
-        },
         // Learning Health Platform
         {
             title: 'Learning Health Platform',
@@ -74,6 +62,42 @@ export class ProjectsService {
             githubUrl: 'https://github.com/TheAbyssSage/iss-piss',
             // liveUrl: '#',
             tags: ['PHP', 'API', 'Dashboard', 'Reliability']
+        },
+        // Portfolio Project
+        {
+            title: 'Sage Stockmans Portfolio',
+            description: "My new portfolio! You're probably viewing it right now. Angular + custom Petrichor theme.",
+            date: '2026-03-09',
+            type: 'Portfolio',
+            stack: 'Angular, TypeScript, HTML, CSS',
+            focus: 'Frontend, UI/UX, SSR',
+            githubUrl: 'https://github.com/TheAbyssSage/sage-stockmans-portfolio',
+            liveUrl: 'https://sage-stockmans.netlify.app/',
+            tags: ['Angular', 'TypeScript', 'Portfolio', 'SSR']
+        },
+        // The Illuminates Weather App
+        {
+            title: 'The Illuminates Weather App',
+            description: "A weather app project developed for a school project with four unique themed experiences using the OpenWeatherMap API.",
+            date: '2026-04-21',
+            type: 'Educational',
+            stack: 'JavaScript, HTML, CSS, Bootstrap, OpenWeatherMap API',
+            focus: 'Frontend, API Integration, Responsive Design',
+            githubUrl: 'https://github.com/TheAbyssSage/The-Illuminates-Weather-App.git',
+            liveUrl: 'https://the-illuminates-weather-app.netlify.app/',
+            tags: ['JavaScript', 'API', 'Bootstrap', 'Weather']
+        },
+        // Chinese Zodiac Finder
+        {
+            title: 'Chinese Zodiac Finder',
+            description: "A simple, elegant web app to find your Chinese zodiac sign from a selected birth date with search functionality.",
+            date: '2026-04-21',
+            type: 'Utility',
+            stack: 'JavaScript, HTML, CSS, Bootstrap',
+            focus: 'Frontend, UI/UX',
+            githubUrl: 'https://github.com/TheAbyssSage/zodiac-c.git',
+            liveUrl: 'https://chinese-zodiac-s.netlify.app/',
+            tags: ['JavaScript', 'Bootstrap', 'UI']
         },
     ];
 
