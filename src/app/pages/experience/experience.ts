@@ -95,7 +95,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     },
     {
       title: 'Bartender & Server',
-      organization: 'Versus',
+      organization: 'Versuz',
       location: 'Hasselt, Belgium',
       track: 'work',
       start: '2025-04',
