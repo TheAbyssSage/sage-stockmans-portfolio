@@ -28,26 +28,26 @@
 
         <div class="intro-tags demo-tags">
             <span class="demo-tag intro-tag--backend">
-                Backend · PHP - Laravel
+                {{ current.introTagBackend }}
             </span>
             <span class="demo-tag intro-tag--frontend">
-                Frontend · Angular · JS
+                {{ current.introTagFrontend }}
             </span>
             <span class="demo-tag intro-tag--data">
-                Data · MySQL - DB design
+                {{ current.introTagData }}
             </span>
             <span class="demo-tag intro-tag--workflow">
-                Workflow · Agile &amp; Scrum
+                {{ current.introTagWorkflow }}
             </span>
             <span class="demo-tag intro-tag--aiworkflow">
-                AI/Agentic workflows · responsible use
+                {{ current.introTagAi }}
             </span>
         </div>
     </section>
 
     <!-- FEATURED PROJECT / DEMO CARD -->
     <section class="home-feature fade-up">
-        <p class="section-label">Featured work</p>
+        <p class="section-label">{{ current.featuredSectionLabel }}</p>
 
         <div class="demo-card">
             <div class="demo-left">
@@ -93,7 +93,7 @@
                 <div class="demo-stat">
                     <span class="demo-stat-num">∞</span>
                     <span class="demo-stat-label">
-                        Bugs debugged &amp; lessons learned
+                        {{ current.statBugsLabel }}
                     </span>
                 </div>
             </div>

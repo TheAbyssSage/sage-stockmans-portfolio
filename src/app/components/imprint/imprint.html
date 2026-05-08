@@ -1,36 +1,33 @@
 <section class="legal-page">
 
     <section class="legal-header fade-up">
-        <p class="section-label">Legal</p>
-        <h1 class="legal-title">Imprint</h1>
+        <p class="section-label">{{ current.sectionLabel }}</p>
+        <h1 class="legal-title">{{ current.title }}</h1>
         <p class="legal-subtitle">
-            Basic contact and ownership information for this portfolio.
+            {{ current.subtitle }}
         </p>
     </section>
 
     <section class="legal-section fade-up">
-        <h2>Site owner</h2>
+        <h2>{{ current.ownerTitle }}</h2>
         <p>
-            <strong>Name:</strong> Sage Stockmans<br />
-            <strong>Location:</strong> Hasselt region, Belgium<br />
-            <strong>Email:</strong> sage.stockmans@pm.me
+            <strong>{{ current.ownerNameLabel }}</strong> {{ current.ownerName }}<br />
+            <strong>{{ current.ownerLocationLabel }}</strong> {{ current.ownerLocation }}<br />
+            <strong>{{ current.ownerEmailLabel }}</strong> {{ current.ownerEmail }}
         </p>
     </section>
 
     <section class="legal-section fade-up">
-        <h2>Purpose of this site</h2>
+        <h2>{{ current.purposeTitle }}</h2>
         <p>
-            This is a personal portfolio to present my work as a full stack developer,
-            including projects, skills, and experience. It is not a commercial online
-            shop or a platform with user accounts.
+            {{ current.purposeText }}
         </p>
     </section>
 
     <section class="legal-section fade-up">
-        <h2>Hosting</h2>
+        <h2>{{ current.hostingTitle }}</h2>
         <p>
-            The site is hosted by Netlify. Basic technical and access logs may be
-            processed by the hosting provider for security and performance.
+            {{ current.hostingText }}
         </p>
     </section>
 

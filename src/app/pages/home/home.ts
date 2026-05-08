@@ -40,6 +40,7 @@ export class Home implements OnInit, OnDestroy {
         'I build full stack web applications with PHP, Laravel, Angular, and MySQL — ' +
         'with a focus on clear structure, responsive UI, and reliable APIs. I enjoy ' +
         'taking an idea from scratch to a working product you can click and use.',
+      featuredSectionLabel: 'Featured work',
       featuredTitle1: 'Building real projects',
       featuredTitle2: 'while I learn.',
       featuredText:
@@ -51,11 +52,17 @@ export class Home implements OnInit, OnDestroy {
       ctaAbout: 'About me',
       statProjectsLabel: 'Projects & experiments',
       statLanguagesLabel: (count: number) => `Languages in use${count !== 1 ? 's' : ''}`,
+      statBugsLabel: 'Bugs debugged & lessons learned',
       contactSectionLabel: 'Get in touch',
       contactText:
         "Open to internships, junior roles, and collaborations. If you're " +
         'looking for someone who enjoys learning fast and shipping working code, let’s talk.',
       contactEmail: 'Email',
+      introTagBackend: 'Backend · PHP - Laravel',
+      introTagFrontend: 'Frontend · Angular · JS',
+      introTagData: 'Data · MySQL - DB design',
+      introTagWorkflow: 'Workflow · Agile & Scrum',
+      introTagAi: 'AI/Agentic workflows · responsible use',
     },
     nl: {
       headerLabel: 'Portfolio · Full Stack Development',
@@ -66,6 +73,7 @@ export class Home implements OnInit, OnDestroy {
         'Ik bouw full stack webapplicaties met PHP, Laravel, Angular en MySQL — ' +
         'met focus op duidelijke structuur, een responsieve UI en betrouwbare APIs. ' +
         'Ik haal er plezier uit om een idee van nul tot een werkende applicatie te brengen.',
+      featuredSectionLabel: 'Uitgelicht werk',
       featuredTitle1: 'Echte projecten bouwen',
       featuredTitle2: 'terwijl ik leer.',
       featuredText:
@@ -77,11 +85,17 @@ export class Home implements OnInit, OnDestroy {
       ctaAbout: 'Over mij',
       statProjectsLabel: 'Projecten & experimenten',
       statLanguagesLabel: (count: number) => `Gebruikte talen`,
+      statBugsLabel: 'Bugs opgelost & lessen geleerd',
       contactSectionLabel: 'Contact',
       contactText:
         'Ik sta open voor stages, junior functies en samenwerkingen. ' +
         'Als je iemand zoekt die snel leert en graag werkende code oplevert, laat gerust iets weten.',
       contactEmail: 'E‑mail',
+      introTagBackend: 'Backend · PHP - Laravel',
+      introTagFrontend: 'Frontend · Angular · JS',
+      introTagData: 'Data · MySQL - DB design',
+      introTagWorkflow: 'Workflow · Agile & Scrum',
+      introTagAi: 'AI/Agentic workflows · verantwoord gebruik',
     },
   };
 

@@ -19,6 +19,23 @@ export class NavbarComponent implements OnInit {
   private readonly LANG_KEY = 'uiLang';
   private isBrowser: boolean;
 
+  t = {
+    en: {
+      home: 'Home',
+      about: 'About',
+      projects: 'Projects',
+      experience: 'Experience',
+      contact: 'Contact',
+    },
+    nl: {
+      home: 'Home',
+      about: 'Over mij',
+      projects: 'Projecten',
+      experience: 'Ervaring',
+      contact: 'Contact',
+    },
+  };
+
   constructor(@Inject(PLATFORM_ID) platformId: object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -54,5 +71,9 @@ export class NavbarComponent implements OnInit {
         new CustomEvent('ui-lang-change', { detail: { lang: this.lang } })
       );
     }
+  }
+
+  get current() {
+    return this.t[this.lang];
   }
 }

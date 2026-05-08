@@ -5,7 +5,7 @@
         <div class="app-footer-left">
             <span>&copy; {{ currentYear }} Sage Stockmans</span>
             <span class="app-footer-dot">·</span>
-            <span>Full Stack Developer</span>
+            <span>{{ current.role }}</span>
         </div>
 
         <!-- <div class="app-footer-center">
@@ -15,11 +15,11 @@
         </div> -->
 
         <div class="app-footer-right">
-            <a class="app-footer-link subtle" routerLink="/privacy">Privacy</a>
+            <a class="app-footer-link subtle" routerLink="/privacy">{{ current.privacy }}</a>
             <span class="app-footer-dot">·</span>
-            <a class="app-footer-link subtle" routerLink="/terms">Terms</a>
+            <a class="app-footer-link subtle" routerLink="/terms">{{ current.terms }}</a>
             <span class="app-footer-dot">·</span>
-            <a class="app-footer-link subtle" routerLink="/imprint">Imprint</a>
+            <a class="app-footer-link subtle" routerLink="/imprint">{{ current.imprint }}</a>
         </div>
 
     </div>

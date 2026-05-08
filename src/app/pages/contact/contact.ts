@@ -53,7 +53,8 @@ export class Contact implements OnInit, OnDestroy {
 
       cvTitle: 'Download CV',
       cvText: 'Download a PDF version of my CV for offline review or sharing.',
-      cvButton: 'Download CV',
+      cvButtonEn: 'English CV',
+      cvButtonNl: 'Dutch CV',
 
       noteText:
         "I'm currently studying Full Stack Development at SyntraPXL, so I'm " +
@@ -89,7 +90,8 @@ export class Contact implements OnInit, OnDestroy {
 
       cvTitle: 'CV downloaden',
       cvText: 'Download een PDF‑versie van mijn CV om offline te bekijken of te delen.',
-      cvButton: 'Download CV',
+      cvButtonEn: 'Engelse CV',
+      cvButtonNl: 'Nederlandse CV',
 
       noteText:
         'Ik studeer momenteel Full Stack Development aan SyntraPXL en ben vooral geïnteresseerd ' +
