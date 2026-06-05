@@ -183,3 +183,226 @@ button:hover .circle .icon.arrow {
 button:hover .button-text {
     color: #fff;
 }
+
+/* AVAILABILITY BADGE */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--moss);
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.availability-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.availability-text strong {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+}
+
+.availability-text span {
+    font-size: 0.65rem;
+    color: var(--clay);
+}
+
+/* CONTACT FORM */
+.contact-form-section {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--dust);
+}
+
+.contact-form-section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+}
+
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-group label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--dust);
+    background: var(--stone);
+    color: var(--ink);
+    font-family: "DM Mono", monospace;
+    font-size: 0.8rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--clay);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--clay);
+    opacity: 0.6;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239c7c5e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2rem;
+}
+
+.form-group select option {
+    background: var(--stone);
+    color: var(--ink);
+}
+
+.form-submit {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--stone);
+    font-family: "DM Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.form-submit:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+.form-privacy {
+    font-size: 0.7rem;
+    color: var(--clay);
+    margin-top: 1rem;
+}
+
+.form-privacy a {
+    color: var(--clay);
+    text-decoration: underline;
+}
+
+.form-privacy a:hover {
+    color: var(--ink);
+}
+
+/* FAQ */
+.contact-faq {
+    margin-bottom: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dust);
+}
+
+.contact-faq h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.faq-item {
+    border: 1px solid var(--dust);
+    padding: 0;
+    transition: border-color 0.2s;
+}
+
+.faq-item:hover {
+    border-color: var(--clay);
+}
+
+.faq-item summary {
+    padding: 0.9rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    font-size: 1.1rem;
+    color: var(--clay);
+    transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    padding: 0 1rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--storm);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
