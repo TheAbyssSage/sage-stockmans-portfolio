@@ -210,6 +210,147 @@
     gap: 1rem;
 }
 
+/* AVAILABILITY BADGE */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--moss);
+    border-radius: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.availability-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.availability-text strong {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+}
+
+.availability-text span {
+    font-size: 0.65rem;
+    color: var(--clay);
+}
+
+/* PROCESS SECTION */
+.home-process {
+    padding: 3rem 0 0;
+    border-top: 1px solid var(--dust);
+    margin-top: 2rem;
+}
+
+.home-process-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+}
+
+.process-steps-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.process-step-home {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 1px solid var(--dust);
+}
+
+.process-num-home {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--clay);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.process-step-home h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.process-step-home p {
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--storm);
+}
+
+/* TESTIMONIALS */
+.home-testimonials {
+    padding: 3rem 0 0;
+    border-top: 1px solid var(--dust);
+    margin-top: 2rem;
+}
+
+.testimonial-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.testimonial-card {
+    border: 1px solid var(--dust);
+    padding: 1.5rem;
+    background: rgba(232, 226, 217, 0.5);
+}
+
+.testimonial-quote {
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--storm);
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.testimonial-author strong {
+    font-size: 0.75rem;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+}
+
+.testimonial-author span {
+    font-size: 0.7rem;
+    color: var(--clay);
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .home-header {
