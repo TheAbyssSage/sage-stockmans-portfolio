@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     en: {
       home: 'Home',
       about: 'About',
+      services: 'Services',
       projects: 'Projects',
       experience: 'Experience',
       contact: 'Contact',
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
     nl: {
       home: 'Home',
       about: 'Over mij',
+      services: 'Diensten',
       projects: 'Projecten',
       experience: 'Ervaring',
       contact: 'Contact',
@@ -70,6 +72,20 @@ export class NavbarComponent implements OnInit {
       window.dispatchEvent(
         new CustomEvent('ui-lang-change', { detail: { lang: this.lang } })
       );
+    }
+  }
+
+  openOffcanvas(): void {
+    this.isOpen = true;
+    if (this.isBrowser) {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  closeOffcanvas(): void {
+    this.isOpen = false;
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
     }
   }
 
