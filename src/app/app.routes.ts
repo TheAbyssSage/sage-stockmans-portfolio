@@ -7,11 +7,13 @@ import { AboutComponent } from './pages/about/about';
 import { ProjectsComponent } from './pages/projects/projects';
 import { Contact } from './pages/contact/contact';
 import { ExperienceComponent } from './pages/experience/experience';
+import { ServicesComponent } from './pages/services/services';
 
 
 export const routes: Routes = [
   { path: '', component: Home, pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
+  { path: 'services', component: ServicesComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'contact', component: Contact },
   { path: 'experience', component: ExperienceComponent },
