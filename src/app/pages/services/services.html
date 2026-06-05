@@ -1,0 +1,79 @@
+<!-- src/app/pages/services/services.component.html -->
+
+<section class="services-page">
+
+  <!-- HEADER -->
+  <section class="services-header fade-up">
+    <p class="section-label">{{ current.sectionLabel }}</p>
+    <h1 class="services-title">{{ current.title }}</h1>
+    <p class="services-subtitle">{{ current.subtitle }}</p>
+
+    <!-- AVAILABILITY BADGE -->
+    <div class="availability-badge">
+      <span class="availability-dot"></span>
+      <div class="availability-text">
+        <strong>{{ current.availabilityStatus }}</strong>
+        <span>{{ current.availabilityNote }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-grid fade-up">
+    <article class="service-card" *ngFor="let service of services">
+      <h2 class="service-card-title">{{ service.title }}</h2>
+      <p class="service-card-desc">{{ service.description }}</p>
+
+      <ul class="service-card-features">
+        <li *ngFor="let feature of service.features">{{ feature }}</li>
+      </ul>
+
+      <div class="service-card-stack">
+        <span class="demo-tag" *ngFor="let tech of service.stack">{{ tech }}</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="services-process fade-up">
+    <p class="section-label">{{ current.processTitle }}</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="process-num">01</span>
+        <h3>{{ current.processStep1Title }}</h3>
+        <p>{{ current.processStep1Text }}</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">02</span>
+        <h3>{{ current.processStep2Title }}</h3>
+        <p>{{ current.processStep2Text }}</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">03</span>
+        <h3>{{ current.processStep3Title }}</h3>
+        <p>{{ current.processStep3Text }}</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">04</span>
+        <h3>{{ current.processStep4Title }}</h3>
+        <p>{{ current.processStep4Text }}</p>
+      </div>
+      <div class="process-step">
+        <span class="process-num">05</span>
+        <h3>{{ current.processStep5Title }}</h3>
+        <p>{{ current.processStep5Text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="services-cta fade-up">
+    <h2>{{ current.ctaTitle }}</h2>
+    <p>{{ current.ctaText }}</p>
+    <a class="link-cta" routerLink="/contact">
+      <span>{{ current.ctaButton }}</span><i>→</i>
+    </a>
+  </section>
+
+</section>

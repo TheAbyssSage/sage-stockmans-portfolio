@@ -1,0 +1,9 @@
+<!-- src/app/components/cookie-consent/cookie-consent.component.html -->
+
+<div class="cookie-banner" *ngIf="showBanner">
+    <p>{{ current.message }}</p>
+    <div class="cookie-actions">
+        <a routerLink="/privacy" class="cookie-privacy">{{ current.privacy }}</a>
+        <button class="cookie-accept" (click)="accept()">{{ current.accept }}</button>
+    </div>
+</div>
