@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -11,11 +11,19 @@ type UiLang = 'en' | 'nl';
   templateUrl: './cookie-consent.html',
   styleUrl: './cookie-consent.css',
 })
-export class CookieConsentComponent implements OnInit {
+export class CookieConsentComponent implements OnInit, OnDestroy {
   showBanner = false;
   private isBrowser: boolean;
 
   uiLang: UiLang = 'en';
+
+  private langListener = (event: Event) => {
+    const custom = event as CustomEvent<{ lang: UiLang }>;
+    const nextLang = custom.detail?.lang;
+    if (nextLang === 'en' || nextLang === 'nl') {
+      this.uiLang = nextLang;
+    }
+  };
 
   t = {
     en: {
@@ -48,6 +56,14 @@ export class CookieConsentComponent implements OnInit {
       } catch {
         this.showBanner = true;
       }
+
+      window.addEventListener('ui-lang-change', this.langListener as EventListener);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isBrowser) {
+      window.removeEventListener('ui-lang-change', this.langListener as EventListener);
     }
   }
 
