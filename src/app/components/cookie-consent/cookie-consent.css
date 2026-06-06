@@ -1,0 +1,73 @@
+/* src/app/components/cookie-consent/cookie-consent.component.css */
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    color: var(--stone);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10000;
+    font-size: 0.75rem;
+    border-top: 1px solid var(--clay);
+}
+
+.cookie-banner p {
+    margin: 0;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+.cookie-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.cookie-privacy {
+    color: var(--dust);
+    text-decoration: underline;
+    font-size: 0.7rem;
+    transition: color 0.2s;
+}
+
+.cookie-privacy:hover {
+    color: var(--stone);
+}
+
+.cookie-accept {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--stone);
+    background: var(--stone);
+    color: var(--ink);
+    font-family: "DM Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cookie-accept:hover {
+    background: transparent;
+    color: var(--stone);
+}
+
+@media (max-width: 640px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .cookie-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

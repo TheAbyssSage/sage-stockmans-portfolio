@@ -35,67 +35,119 @@ export class Home implements OnInit, OnDestroy {
       headerLabel: 'Portfolio · Full Stack Development',
       headerMetaLine1: 'PHP · Laravel · Angular',
       headerMetaLine2: 'Arizona & Belgium',
-      headerMetaLine3: 'Full Stack Developer in training',
+      headerMetaLine3: 'Full Stack Developer',
+      availabilityStatus: 'Available for new projects',
+      availabilityNote: 'Booking for Q3 2026',
       introText:
         'I build full stack web applications with PHP, Laravel, Angular, and MySQL — ' +
-        'with a focus on clear structure, responsive UI, and reliable APIs. I enjoy ' +
-        'taking an idea from scratch to a working product you can click and use.',
+        'with a focus on clean architecture, responsive UI, and reliable APIs. I deliver ' +
+        'end-to-end solutions that solve real business problems and drive measurable results.',
       featuredSectionLabel: 'Featured work',
-      featuredTitle1: 'Building real projects',
-      featuredTitle2: 'while I learn.',
+      featuredTitle1: 'Building production-ready',
+      featuredTitle2: 'applications.',
       featuredText:
-        'From small JavaScript experiments to full PHP & Angular apps, ' +
-        'I focus on projects that solve real problems, teach me new patterns, ' +
-        'and are solid enough to deploy and maintain.',
+        'From business websites to e-commerce platforms and data dashboards, ' +
+        'I deliver full stack solutions that are secure, scalable, and built to ' +
+        'perform in production environments.',
       featuredTags: ['Full stack', 'APIs', 'Laravel & PHP', 'Angular'],
       ctaProjects: 'View projects',
       ctaAbout: 'About me',
-      statProjectsLabel: 'Projects & experiments',
+      statProjectsLabel: 'Projects delivered',
       statLanguagesLabel: (count: number) => `Languages in use${count !== 1 ? 's' : ''}`,
-      statBugsLabel: 'Bugs debugged & lessons learned',
+      statBugsLabel: 'Problems solved & systems optimized',
+
+      processSectionLabel: 'How I work',
+      processTitle: 'From idea to production in five steps.',
+      processStep1Title: 'Discovery',
+      processStep1Text: 'Understand your business needs, constraints, and goals.',
+      processStep2Title: 'Planning',
+      processStep2Text: 'Architecture, timeline, and transparent milestones.',
+      processStep3Title: 'Development',
+      processStep3Text: 'Agile sprints with clean code and continuous testing.',
+      processStep4Title: 'Delivery',
+      processStep4Text: 'Testing, deployment, documentation, and handoff.',
+      processStep5Title: 'Support',
+      processStep5Text: 'Maintenance, iterations, and scaling as you grow.',
+      processCta: 'See full services',
+
+      testimonialSectionLabel: 'Client feedback',
+      testimonialQuote1: '"Sage delivered a professional Laravel website with quote forms that significantly improved our customer inquiries. The code was clean and the communication was excellent throughout."',
+      testimonialAuthor1: '— Uyttendaele Verhuizingen',
+      testimonialRole1: 'Business Website',
+      testimonialQuote2: '"The Learning Health Platform handles payments and invoicing seamlessly. Sage understood our requirements quickly and built a solution that just works."',
+      testimonialAuthor2: '— Learning Health Platform',
+      testimonialRole2: 'Educational Platform',
+
       contactSectionLabel: 'Get in touch',
       contactText:
-        "Open to internships, junior roles, and collaborations. If you're " +
-        'looking for someone who enjoys learning fast and shipping working code, let’s talk.',
+        "Open to full stack roles, freelance projects, and collaborations. If you're " +
+        'looking for a developer who delivers clean, maintainable code on time, let\u2019s talk.',
       contactEmail: 'Email',
+      contactCta: 'Contact me',
       introTagBackend: 'Backend · PHP - Laravel',
       introTagFrontend: 'Frontend · Angular · JS',
       introTagData: 'Data · MySQL - DB design',
       introTagWorkflow: 'Workflow · Agile & Scrum',
-      introTagAi: 'AI/Agentic workflows · responsible use',
+      introTagAi: 'AI/Agentic workflows · strategic integration',
     },
     nl: {
       headerLabel: 'Portfolio · Full Stack Development',
       headerMetaLine1: 'PHP · Laravel · Angular',
       headerMetaLine2: 'Arizona & België',
-      headerMetaLine3: 'Full Stack Developer in opleiding',
+      headerMetaLine3: 'Full Stack Developer',
+      availabilityStatus: 'Beschikbaar voor nieuwe projecten',
+      availabilityNote: 'Boeking voor Q3 2026',
       introText:
         'Ik bouw full stack webapplicaties met PHP, Laravel, Angular en MySQL — ' +
-        'met focus op duidelijke structuur, een responsieve UI en betrouwbare APIs. ' +
-        'Ik haal er plezier uit om een idee van nul tot een werkende applicatie te brengen.',
+        'met focus op heldere architectuur, een responsieve UI en betrouwbare APIs. ' +
+        'Ik lever end-to-end oplossingen die echte bedrijfsproblemen oplossen en meetbare resultaten opleveren.',
       featuredSectionLabel: 'Uitgelicht werk',
-      featuredTitle1: 'Echte projecten bouwen',
-      featuredTitle2: 'terwijl ik leer.',
+      featuredTitle1: 'Productieklare applicaties',
+      featuredTitle2: 'bouwen.',
       featuredText:
-        'Van kleine JavaScript-experimenten tot volledige PHP- en Angular-apps: ' +
-        'ik werk aan projecten die echte problemen oplossen, mij nieuwe patronen leren, ' +
-        'en stevig genoeg zijn om te deployen en te onderhouden.',
+        'Van zakelijke websites tot e-commerceplatforms en data-dashboards: ' +
+        'ik lever full stack oplossingen die veilig, schaalbaar en gebouwd zijn ' +
+        'om te presteren in productieomgevingen.',
       featuredTags: ['Full stack', 'APIs', 'Laravel & PHP', 'Angular'],
       ctaProjects: 'Bekijk projecten',
       ctaAbout: 'Over mij',
-      statProjectsLabel: 'Projecten & experimenten',
+      statProjectsLabel: 'Projecten opgeleverd',
       statLanguagesLabel: (count: number) => `Gebruikte talen`,
-      statBugsLabel: 'Bugs opgelost & lessen geleerd',
+      statBugsLabel: 'Problemen opgelost & systemen geoptimaliseerd',
+
+      processSectionLabel: 'Hoe ik werk',
+      processTitle: 'Van idee tot productie in vijf stappen.',
+      processStep1Title: 'Ontdekking',
+      processStep1Text: 'Begrijp uw bedrijfsbehoeften, beperkingen en doelen.',
+      processStep2Title: 'Planning',
+      processStep2Text: 'Architectuur, tijdlijn en transparante mijlpalen.',
+      processStep3Title: 'Ontwikkeling',
+      processStep3Text: 'Agile sprints met schone code en continue testen.',
+      processStep4Title: 'Oplevering',
+      processStep4Text: 'Testen, deployment, documentatie en overdracht.',
+      processStep5Title: 'Ondersteuning',
+      processStep5Text: 'Onderhoud, iteraties en schaalvergroting naarmate u groeit.',
+      processCta: 'Bekijk alle diensten',
+
+      testimonialSectionLabel: 'Klantfeedback',
+      testimonialQuote1: '"Sage leverde een professionele Laravel-website met offerteformulieren die onze klantenvragen aanzienlijk verbeterden. De code was schoon en de communicatie was uitstekend gedurende het hele traject."',
+      testimonialAuthor1: '— Uyttendaele Verhuizingen',
+      testimonialRole1: 'Zakelijke Website',
+      testimonialQuote2: '"Het Learning Health Platform verwerkt betalingen en facturering naadloos. Sage begreep onze vereisten snel en bouwde een oplossing die gewoon werkt."',
+      testimonialAuthor2: '— Learning Health Platform',
+      testimonialRole2: 'Educatief Platform',
+
       contactSectionLabel: 'Contact',
       contactText:
-        'Ik sta open voor stages, junior functies en samenwerkingen. ' +
-        'Als je iemand zoekt die snel leert en graag werkende code oplevert, laat gerust iets weten.',
+        'Ik sta open voor full stack functies, freelance projecten en samenwerkingen. ' +
+        'Als je een developer zoekt die schone, onderhoudbare code op tijd oplevert, laat gerust iets weten.',
       contactEmail: 'E‑mail',
+      contactCta: 'Neem contact op',
       introTagBackend: 'Backend · PHP - Laravel',
       introTagFrontend: 'Frontend · Angular · JS',
       introTagData: 'Data · MySQL - DB design',
       introTagWorkflow: 'Workflow · Agile & Scrum',
-      introTagAi: 'AI/Agentic workflows · verantwoord gebruik',
+      introTagAi: 'AI/Agentic workflows · strategische integratie',
     },
   };
 

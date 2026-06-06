@@ -45,11 +45,11 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   t = {
     en: {
       sectionLabel: 'Experience',
-      title: "Work, education, and how I'm learning to use AI responsibly.",
-      subtitle: 'A git-branch inspired overview of jobs, school, and extra learning.',
+      title: "Professional background, education, and strategic AI integration.",
+      subtitle: 'A git-branch inspired overview of work, credentials, and continuous development.',
       ctaText:
-        "I use what I learned in customer-facing jobs, school, and AI/agentic workflows " +
-        "to build software that's reliable, understandable, and actually pleasant to use.",
+        "I leverage experience from client-facing roles, formal education, and AI/agentic workflows " +
+        "to build software that's reliable, maintainable, and delivers business value.",
 
       legendWork: 'Work',
       legendEducation: 'Education',
@@ -61,11 +61,11 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     },
     nl: {
       sectionLabel: 'Ervaring',
-      title: 'Werk, opleiding en hoe ik leer om AI verantwoord te gebruiken.',
-      subtitle: 'Een git-branch geïnspireerd overzicht van jobs, school en extra leertrajecten.',
+      title: 'Professionele achtergrond, opleiding en strategische AI-integratie.',
+      subtitle: 'Een git-branch geïnspireerd overzicht van werk, diploma\'s en continue ontwikkeling.',
       ctaText:
-        'Wat ik leerde in klantgerichte jobs, op school en in AI/agentic workflows gebruik ik ' +
-        'om software te bouwen die betrouwbaar, begrijpelijk en fijn in gebruik is.',
+        'Ik benut ervaring uit klantgerichte functies, formele opleiding en AI/agentic workflows ' +
+        'om software te bouwen die betrouwbaar, onderhoudbaar is en bedrijfswaarde levert.',
 
       legendWork: 'Werk',
       legendEducation: 'Opleiding',
@@ -154,11 +154,11 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         track: 'education' as ExperienceTrack,
         start: '2025-09',
         end: '2026-06',
-        periodLabel: '2025.09 – 2026 (ongoing)',
+        periodLabel: '2025.09 – 2026.06',
         summary:
-          'Full stack development program focused on backend, frontend, and software craftsmanship.',
+          'Graduated from a comprehensive full stack development program covering backend, frontend, and software craftsmanship.',
         details:
-          'Coursework includes OO programming, REST APIs, PHP (OOP), Laravel, Node.js, security, frontend (Angular/JS), and Agile workflows.',
+          'Coursework included OO programming, REST APIs, PHP (OOP), Laravel, Node.js, security, frontend (Angular/JS), and Agile workflows.',
         tags: ['Full stack', 'PHP/Laravel', 'Angular', 'REST APIs', 'MySQL', 'Database design', 'TypeScript'],
       },
       {
@@ -288,11 +288,11 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         track: 'education' as ExperienceTrack,
         start: '2025-09',
         end: '2026-06',
-        periodLabel: '2025.09 – 2026 (lopend)',
+        periodLabel: '2025.09 – 2026.06',
         summary:
-          'Full stack development-programma gericht op backend, frontend en software craftsmanship.',
+          'Afgestudeerd aan een uitgebreid full stack development-programma gericht op backend, frontend en software craftsmanship.',
         details:
-          'Cursus omvat OO-programmering, REST APIs, PHP (OOP), Laravel, Node.js, beveiliging, frontend (Angular/JS) en Agile workflows.',
+          'Cursus omvatte OO-programmering, REST APIs, PHP (OOP), Laravel, Node.js, beveiliging, frontend (Angular/JS) en Agile workflows.',
         tags: ['Full stack', 'PHP/Laravel', 'Angular', 'REST APIs', 'MySQL', 'Database design', 'TypeScript'],
       },
       {

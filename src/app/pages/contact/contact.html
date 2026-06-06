@@ -11,6 +11,15 @@
         <p class="contact-subtitle">
             {{ current.subtitle }}
         </p>
+
+        <!-- AVAILABILITY BADGE -->
+        <div class="availability-badge">
+            <span class="availability-dot"></span>
+            <div class="availability-text">
+                <strong>{{ current.availabilityStatus }}</strong>
+                <span>{{ current.availabilityNote }}</span>
+            </div>
+        </div>
     </section>
 
     <!-- MAIN TEXT -->
@@ -21,6 +30,47 @@
         <p>
             {{ current.mainP2 }}
         </p>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="contact-form-section fade-up">
+        <h2>{{ current.formTitle }}</h2>
+        <form action="https://formbold.com/s/3LaKR" method="POST" class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contact-name">{{ current.formNameLabel }}</label>
+                    <input type="text" id="contact-name" name="name" [placeholder]="current.formNamePlaceholder" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">{{ current.formEmailLabel }}</label>
+                    <input type="email" id="contact-email" name="email" [placeholder]="current.formEmailPlaceholder" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contact-project">{{ current.formProjectLabel }}</label>
+                    <select id="contact-project" name="project_type" required>
+                        <option value="" disabled selected>{{ current.formProjectPlaceholder }}</option>
+                        <option *ngFor="let opt of current.formProjectOptions" [value]="opt">{{ opt }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact-timeline">{{ current.formTimelineLabel }}</label>
+                    <select id="contact-timeline" name="timeline">
+                        <option value="" disabled selected>{{ current.formTimelinePlaceholder }}</option>
+                        <option *ngFor="let opt of current.formTimelineOptions" [value]="opt">{{ opt }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact-message">{{ current.formMessageLabel }}</label>
+                <textarea id="contact-message" name="message" rows="5" [placeholder]="current.formMessagePlaceholder" required></textarea>
+            </div>
+            <button type="submit" class="form-submit">{{ current.formSubmit }}</button>
+            <p class="form-privacy">
+                {{ current.formPrivacy }}<a routerLink="/privacy">{{ current.formPrivacyLink }}</a>.
+            </p>
+        </form>
     </section>
 
     <!-- CONTACT OPTIONS -->
@@ -54,6 +104,30 @@
             <a class="link-cta" href="https://github.com/TheAbyssSage" target="_blank" rel="noopener noreferrer">
                 <span>{{ current.githubCta }}</span><i>↗</i>
             </a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="contact-faq fade-up">
+        <p class="section-label">FAQ</p>
+        <h2>{{ current.faqTitle }}</h2>
+        <div class="faq-list">
+            <details class="faq-item">
+                <summary>{{ current.faqRateQ }}</summary>
+                <p>{{ current.faqRateA }}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{{ current.faqRemoteQ }}</summary>
+                <p>{{ current.faqRemoteA }}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{{ current.faqTimelineQ }}</summary>
+                <p>{{ current.faqTimelineA }}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{{ current.faqTechQ }}</summary>
+                <p>{{ current.faqTechA }}</p>
+            </details>
         </div>
     </section>
 

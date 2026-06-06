@@ -1,0 +1,231 @@
+/* src/app/pages/services/services.component.css */
+
+.services-page {
+    padding: 2rem 2rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.services-header {
+    padding: 2.5rem 0 1.5rem;
+    border-bottom: 1px solid var(--dust);
+}
+
+.services-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+.services-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--storm);
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+/* AVAILABILITY BADGE */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--moss);
+    border-radius: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.availability-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.availability-text strong {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+}
+
+.availability-text span {
+    font-size: 0.65rem;
+    color: var(--clay);
+}
+
+/* SERVICES GRID */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+}
+
+.service-card {
+    border: 1px solid var(--dust);
+    padding: 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    border-color: var(--clay);
+    box-shadow: 0 4px 20px rgba(26, 24, 20, 0.06);
+}
+
+.service-card-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+
+.service-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--storm);
+    margin-bottom: 1rem;
+}
+
+.service-card-features {
+    list-style: none;
+    margin-bottom: 1.25rem;
+}
+
+.service-card-features li {
+    font-size: 0.75rem;
+    color: var(--storm);
+    padding: 0.25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.service-card-features li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--clay);
+    font-size: 0.7rem;
+}
+
+.service-card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dust);
+}
+
+.service-card-stack .demo-tag {
+    font-size: 0.55rem;
+    padding: 0.25rem 0.5rem;
+    border-color: var(--dust);
+    color: var(--clay);
+}
+
+/* PROCESS */
+.services-process {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--dust);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.process-step {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 1px solid var(--dust);
+}
+
+.process-num {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--clay);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.process-step h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.process-step p {
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--storm);
+}
+
+/* CTA */
+.services-cta {
+    padding: 2.5rem;
+    border: 1px solid var(--dust);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.services-cta h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+
+.services-cta p {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--storm);
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services-cta .link-cta {
+    display: inline-flex;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+}

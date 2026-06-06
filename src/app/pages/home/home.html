@@ -22,6 +22,15 @@
 
     <!-- INTRO -->
     <section class="home-intro fade-up">
+        <!-- AVAILABILITY BADGE -->
+        <div class="availability-badge">
+            <span class="availability-dot"></span>
+            <div class="availability-text">
+                <strong>{{ current.availabilityStatus }}</strong>
+                <span>{{ current.availabilityNote }}</span>
+            </div>
+        </div>
+
         <p class="intro-text">
             {{ current.introText }}
         </p>
@@ -100,6 +109,67 @@
         </div>
     </section>
 
+    <!-- PROCESS -->
+    <section class="home-process fade-up">
+        <p class="section-label">{{ current.processSectionLabel }}</p>
+        <h2 class="home-process-title">{{ current.processTitle }}</h2>
+
+        <div class="process-steps-home">
+            <div class="process-step-home">
+                <span class="process-num-home">01</span>
+                <h3>{{ current.processStep1Title }}</h3>
+                <p>{{ current.processStep1Text }}</p>
+            </div>
+            <div class="process-step-home">
+                <span class="process-num-home">02</span>
+                <h3>{{ current.processStep2Title }}</h3>
+                <p>{{ current.processStep2Text }}</p>
+            </div>
+            <div class="process-step-home">
+                <span class="process-num-home">03</span>
+                <h3>{{ current.processStep3Title }}</h3>
+                <p>{{ current.processStep3Text }}</p>
+            </div>
+            <div class="process-step-home">
+                <span class="process-num-home">04</span>
+                <h3>{{ current.processStep4Title }}</h3>
+                <p>{{ current.processStep4Text }}</p>
+            </div>
+            <div class="process-step-home">
+                <span class="process-num-home">05</span>
+                <h3>{{ current.processStep5Title }}</h3>
+                <p>{{ current.processStep5Text }}</p>
+            </div>
+        </div>
+
+        <a class="link-cta" routerLink="/services">
+            <span>{{ current.processCta }}</span><i>→</i>
+        </a>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="home-testimonials fade-up">
+        <p class="section-label">{{ current.testimonialSectionLabel }}</p>
+
+        <div class="testimonial-list">
+            <blockquote class="testimonial-card">
+                <p class="testimonial-quote">{{ current.testimonialQuote1 }}</p>
+                <footer class="testimonial-author">
+                    <strong>{{ current.testimonialAuthor1 }}</strong>
+                    <span>{{ current.testimonialRole1 }}</span>
+                </footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card">
+                <p class="testimonial-quote">{{ current.testimonialQuote2 }}</p>
+                <footer class="testimonial-author">
+                    <strong>{{ current.testimonialAuthor2 }}</strong>
+                    <span>{{ current.testimonialRole2 }}</span>
+                </footer>
+            </blockquote>
+        </div>
+    </section>
+
     <!-- CONTACT PREVIEW -->
     <section class="home-contact fade-up">
         <p class="section-label">
@@ -110,6 +180,9 @@
         </p>
 
         <div class="home-contact-links">
+            <a class="link-cta" routerLink="/contact">
+                <span>{{ current.contactCta }}</span><i>→</i>
+            </a>
             <a class="link-cta" href="mailto:sage.stockmans@pm.me">
                 <span>{{ current.contactEmail }}</span><i>✉</i>
             </a>
